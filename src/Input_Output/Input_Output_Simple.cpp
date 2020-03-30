@@ -21,19 +21,42 @@ void Input_Output_Simple::close_channel(unsigned int channel)
 
 gfp Input_Output_Simple::private_input_gfp(unsigned int channel)
 {
-  cout << "Input channel " << channel << " : ";
+  string line;
+  // cout << "Input channel " << channel << " : ";
   word x;
-  cin >> x;
+  // cout << "counter " << counter1;
+
+  ifstream myfile;
+  string name;
+  name = "Input/data" + std::to_string(channel) + ".txt";
+  myfile.open(name);
+  for (int i = 0; i < counter1-1; i++) {
+    getline (myfile, line);
+  }
+  getline (myfile, line);
+  cout << "counter " << counter1 << "  " << line;
+
+  x = std::stoul(line);
+  myfile.close();
+  // cin >> x;
+  // line >> x;
   gfp y;
   y.assign(x);
+  counter1++;
   return y;
 }
 
 void Input_Output_Simple::private_output_gfp(const gfp &output, unsigned int channel)
 {
-  cout << "Output channel " << channel << " : ";
+  cout << "Output channel " << channel << " : \n";
+  ofstream myfile;
+
   output.output(cout, true);
-  cout << endl;
+  myfile.open ("Input/result.txt");
+  output.output(myfile, true);
+  myfile << "\n";
+  myfile.close();
+  cout << "\n";
 }
 
 gfp Input_Output_Simple::public_input_gfp(unsigned int channel)

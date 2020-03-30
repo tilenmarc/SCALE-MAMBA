@@ -23,7 +23,7 @@ class Input_Output_Simple : public Input_Output_Base
 {
   istream *inpf;
   ostream *outf;
-
+  int counter1 = 0;
   bool human; // Only affects share output
 
 public:
