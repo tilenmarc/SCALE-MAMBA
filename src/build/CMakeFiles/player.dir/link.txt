@@ -1,1 +1,0 @@
-/usr/bin/g++     CMakeFiles/player.dir/Player.cpp.o  -o player  libscale.a -pthread /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so /home/tilenmarc/programs/cryptopp/lib/libcryptopp.a /home/tilenmarc/programs/mpir/lib/libmpir.so /home/tilenmarc/programs/mpir/lib/libmpirxx.so 
