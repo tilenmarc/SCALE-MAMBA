@@ -17,16 +17,14 @@ def load_data():
 def output_result(res):
     res.reveal_to(0)
 
-def max(a):
+def sum(a):
     res = Array(100 + 1, sint)
     res[0] = sint(0)
-    # one = sint(1)
     @for_range(100)
     def f(i):
-        c = res[i] < a[i]
-        res[i+1] = res[i] * (1 - c) + a[i] * c
+        res[i+1] = res[i] + a[i]
     return res[100]
 
 a = load_data()
-s = max(a)
+s = sum(a)
 output_result(s)
