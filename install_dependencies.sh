@@ -13,8 +13,8 @@ make && make check && make install
 
 # install OpenSSL 1.1.0
 cd $mylocal
-curl -O https://www.openssl.org/source/openssl-1.1.1c.tar.gz
-tar -xf openssl-1.1.1c.tar.gz
+curl -O https://www.openssl.org/source/old/1.1.1/openssl-1.1.1e.tar.gz
+tar -xf openssl-1.1.1e.tar.gz
 cd openssl-1.1.1c
 ./config --prefix="${mylocal}/openssl"
 make && make install
