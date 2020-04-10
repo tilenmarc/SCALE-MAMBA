@@ -29,3 +29,5 @@ def max(a):
 a = load_data()
 s = max(a)
 output_result(s)
+
+restart()
