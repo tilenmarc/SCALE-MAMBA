@@ -1,91 +1,10 @@
-def load_data():
-    a1 = Array(10, sint)
-    a2 = Array(10, sint)
-    a3 = Array(10, sint)
-    a = Array(10, sint)
-    b = Array(10, sint)
-    @for_range(10)
-    def f(i):
-        a1[i] = sint.get_private_input_from(0, 0)
-        a1[i].reveal_to(0)
-        a2[i] = sint.get_private_input_from(1, 1)
-        a3[i] = sint.get_private_input_from(2, 2)
-        a[i] = a1[i] + a2[i]
-        a[i] = a[i] + a3[i]
-        b[i] = a[i] % 2**32
-        b[i].reveal_to(0)
-
-    return b
-
 def output_result(res):
     res.reveal_to(0)
 
-def sum(a):
-    res = Array(10 + 1, sint)
-    res[0] = sint(0)
-    @for_range(10)
-    def f(i):
-        res[i+1] = res[i] + a[i]
-    return res[10]
+a = sint(10)
+b = sint(11)
+print_ln(' a=%s',reveal(a))
 
-a = load_data()
-s = sum(a)
-output_result(s)
-def load_data():
-    a1 = Array(10, sint)
-    a2 = Array(10, sint)
-    a3 = Array(10, sint)
-    a = Array(10, sint)
-    @for_range(10)
-    def f(i):
-        a1[i] = sint.get_private_input_from(0, 0)
-        a2[i] = sint.get_private_input_from(1, 1)
-        a3[i] = sint.get_private_input_from(2, 2)
-        a[i] = a1[i] + a2[i]
-        a[i] = a[i] + a3[i]
+output_result(b)
 
-    return a
-
-def output_result(res):
-    res.reveal_to(0)
-
-def sum(a):
-    res = Array(10 + 1, sint)
-    res[0] = sint(0)
-    @for_range(10)
-    def f(i):
-        res[i+1] = res[i] + a[i]
-    return res[10]
-
-a = load_data()
-s = sum(a)
-output_result(s)
-def load_data():
-    a1 = Array(10, sint)
-    a2 = Array(10, sint)
-    a3 = Array(10, sint)
-    a = Array(10, sint)
-    @for_range(10)
-    def f(i):
-        a1[i] = sint.get_private_input_from(0, 0)
-        a2[i] = sint.get_private_input_from(1, 1)
-        a3[i] = sint.get_private_input_from(2, 2)
-        a[i] = a1[i] + a2[i]
-        a[i] = a[i] + a3[i]
-
-    return a
-
-def output_result(res):
-    res.reveal_to(0)
-
-def sum(a):
-    res = Array(10 + 1, sint)
-    res[0] = sint(0)
-    @for_range(10)
-    def f(i):
-        res[i+1] = res[i] + a[i]
-    return res[10]
-
-a = load_data()
-s = sum(a)
-output_result(s)
+# restart()

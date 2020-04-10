@@ -184,7 +184,7 @@ void Processor::execute(const Program &prog, int argument, Player &P,
            * This halts machine, until something external says OK to go
            * Possibly loading a new schedule
            */
-          machine.get_IO().trigger(machine.schedule);
+          machine.get_IO().trigger(machine.schedule, P.whoami());
           printf("Restarting...\n");
           for (unsigned int connection= 0; connection < 3; connection++)
             {
