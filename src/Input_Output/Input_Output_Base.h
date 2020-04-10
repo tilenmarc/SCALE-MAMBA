@@ -93,7 +93,7 @@ public:
   virtual Share input_share(unsigned int channel)= 0;
 
   // Trigger function for restarts
-  virtual void trigger(Schedule &schedule)= 0;
+  virtual void trigger(Schedule &schedule, int whoami)= 0;
 
   // Debug output data sent here
   virtual void debug_output(const stringstream &ss)= 0;

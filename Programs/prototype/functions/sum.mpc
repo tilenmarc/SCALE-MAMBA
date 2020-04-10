@@ -28,3 +28,5 @@ def sum(a):
 a = load_data()
 s = sum(a)
 output_result(s)
+
+restart()

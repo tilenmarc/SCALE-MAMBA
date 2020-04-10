@@ -7,6 +7,7 @@ All rights reserved
 
 #include "Input_Output_Simple.h"
 #include "Exceptions/Exceptions.h"
+#include <unistd.h>
 
 long Input_Output_Simple::open_channel(unsigned int channel)
 {
@@ -22,24 +23,20 @@ void Input_Output_Simple::close_channel(unsigned int channel)
 gfp Input_Output_Simple::private_input_gfp(unsigned int channel)
 {
   string line;
-  // cout << "Input channel " << channel << " : ";
   word x;
-  // cout << "counter " << counter1;
 
   ifstream myfile;
   string name;
   name = "Input/data" + std::to_string(channel) + ".txt";
   myfile.open(name);
-  for (int i = 0; i < counter1-1; i++) {
+  for (int i = 0; i < counter1; i++) {
     getline (myfile, line);
   }
   getline (myfile, line);
-  cout << "counter " << counter1 << "  " << line;
+//  cout << "counter " << counter1 << "  " << line;
 
   x = std::stoul(line);
   myfile.close();
-  // cin >> x;
-  // line >> x;
   gfp y;
   y.assign(x);
   counter1++;
@@ -48,15 +45,16 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel)
 
 void Input_Output_Simple::private_output_gfp(const gfp &output, unsigned int channel)
 {
-  cout << "Output channel " << channel << " : \n";
-  ofstream myfile;
+  ofstream result, finish;
 
-  output.output(cout, true);
-  myfile.open ("Input/result.txt");
-  output.output(myfile, true);
-  myfile << "\n";
-  myfile.close();
-  cout << "\n";
+  result.open ("Input/result.txt");
+  output.output(result, true);
+  result << "\n";
+  result.close();
+
+  finish.open ("Input/finish.txt");
+  finish << "true\n";
+  finish.close();
 }
 
 gfp Input_Output_Simple::public_input_gfp(unsigned int channel)
@@ -112,11 +110,30 @@ Share Input_Output_Simple::input_share(unsigned int channel)
   return S;
 }
 
-void Input_Output_Simple::trigger(Schedule &schedule)
+void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
 {
-  printf("Restart requested: Enter a number to proceed\n");
-  int i;
-  cin >> i;
+    while (true) {
+        std::ifstream trigger_file("Input/trigger" + std::to_string(whoimi) + ".txt");
+
+        if (trigger_file.is_open())
+        {
+            std::string line;
+            std::getline(trigger_file, line);
+//            std::cout << line << whoimi << "\n";
+            if (line == "restart") {
+                trigger_file.clear();
+
+                ofstream new_trigger_file;
+                new_trigger_file.open ("Input/trigger" + std::to_string(whoimi) + ".txt");
+                new_trigger_file << "wait\n";
+                new_trigger_file.close();
+                break;
+            }
+            trigger_file.clear();
+        }
+        usleep(100000);
+    }
+
 
   // Load new schedule file program streams, using the original
   // program name
@@ -124,6 +141,7 @@ void Input_Output_Simple::trigger(Schedule &schedule)
   // Here you could define programatically what the new
   // programs you want to run are, by directly editing the
   // public variables in the schedule object.
+  counter1 = 0;
   unsigned int nthreads= schedule.Load_Programs();
   if (schedule.max_n_threads() < nthreads)
     {
