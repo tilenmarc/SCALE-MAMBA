@@ -1,0 +1,97 @@
+# def load_data():
+#     a1 = Array(LEN, sint)
+#     a2 = Array(LEN, sint)
+#     a3 = Array(LEN, sint)
+#     a = Array(LEN, sint)
+#     @for_range(LEN)
+#     def f(i):
+#         a1[i] = sint.get_private_input_from(0, 0)
+#         a2[i] = sint.get_private_input_from(1, 1)
+#         a3[i] = sint.get_private_input_from(2, 2)
+#         a[i] = a1[i] + a2[i]
+#         a[i] = a[i] + a3[i]
+#         a[i] = a[i] % 2**32
+
+#     return a
+
+# def output_result(res):
+#     res.reveal_to(0)
+
+def matrix_mul_vec(mat, vec):
+    res = Array(len(mat), sint)
+
+    @for_range(len(mat))
+    def f(i):
+        res[i] = sint(0)
+        @for_range(len(vec))
+        def g(j):
+            res[i] = mat[i][j] * vec[j] + res[i]
+    return res
+
+# def sum(a, n):
+#     # res = Array(n + 1, sint)
+#     res = sint(0)
+#     def f(i):
+#         b = res + 0
+#         # res = 5 + a[i]
+#     range_loop(f, n)
+#     # def f(i):
+#     #     # b = res + 0
+#     #     res = 5 + a[i]
+#     return res
+
+# def file_to_mat(file_name):
+#     m1 = []
+#     o = open(file_name, 'r')
+#     i = 0
+#     for line in o:
+#         row = [int(x) for x in line.split()]
+#         m1.append(row)
+
+#         i += 1
+
+#     m = Matrix(len(m1), len(m1[0]), cint)
+#             # for j in range(len(row)):
+#             # mat[i][j] = cint(row[j])
+#     return mat
+
+n = 200
+m = [[i * j for i in range(n)] for j in range(n)]
+mat = Matrix(n, n, cint)
+for i in range(n):
+    for j in range(n):
+        k = i * j
+        mat[i][j] = cint(k)
+
+vec = Array(n, sint)
+for i in range(n):
+    vec[i] = sint(1)
+
+
+
+out = matrix_mul_vec(mat, vec)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+out = matrix_mul_vec(mat, out)
+
+res = out[1].reveal()
+
+# out = sum(vec, n)
+# res = out.reveal()
+
+print_ln('got %s', res)
+
+restart()
+

@@ -1,0 +1,18 @@
+/home/tilenmarc/Programs/clion-2020.1.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DOPENSSL_ROOT_DIR=/home/tilenmarc/programs/openssl -DCRYPTOPP_ROOT_DIR=/home/tilenmarc/programs/cryptopp -DMPIR_ROOT_DIR=/home/tilenmarc/programs/mpir -G "CodeBlocks - Unix Makefiles" /home/tilenmarc/git/SCALE_MAMBA_MY/src
+-- The CXX compiler identification is GNU 9.3.0
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at /home/tilenmarc/Programs/clion-2020.1.2/bin/cmake/linux/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:146 (message):
+  Could NOT find MPIR (missing: MPIR_LIBRARY MPIR_INCLUDE_DIR)
+Call Stack (most recent call first):
+  /home/tilenmarc/Programs/clion-2020.1.2/bin/cmake/linux/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:393 (_FPHSA_FAILURE_MESSAGE)
+  cmake-modules/FindMPIR.cmake:12 (find_package_handle_standard_args)
+  CMakeLists.txt:25 (find_package)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/CMakeOutput.log".

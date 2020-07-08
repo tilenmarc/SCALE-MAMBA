@@ -11,13 +11,13 @@ MAX_MOD = 7
 
 # Benchmark flags
 #   BENCH_NETDATA = Enable benchmarking of network data
-#   BENCH_MEMORY  = Enable benchmarking of memory 
+#   BENCH_MEMORY  = Enable benchmarking of memory
 
 #FLAGS = -DSH_DEBUG -DDEBUG -DMAX_MOD_SZ=$(MAX_MOD) -DDETERMINISTIC -DBENCH_NETDATA -DBENCH_MEMORY
-FLAGS = -DMAX_MOD_SZ=$(MAX_MOD) 
+FLAGS = -DMAX_MOD_SZ=$(MAX_MOD)
 
-OPT = -O3 
+OPT = -O3
 
-LDFLAGS = 
+LDFLAGS =
 ROOT = /home/tilenmarc/SCALE-MAMBA
 OSSL = /home/tilenmarc/programs/openssl
