@@ -19,5 +19,5 @@ FLAGS = -DMAX_MOD_SZ=$(MAX_MOD)
 OPT = -O3 
 
 LDFLAGS = 
-ROOT = /home/tilenmarc/SCALE-MAMBA
-OSSL = /home/tilenmarc/programs/openssl
+ROOT = /home/tilenmarc/git/SCALE_MAMBA_MY
+OSSL = /home/tilenmarc/Programs/openssl

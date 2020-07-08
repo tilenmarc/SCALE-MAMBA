@@ -1,0 +1,1598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SCALE_MAMBA"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake-modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/player" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 player"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/player" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 player/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="local">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/local.dir/local.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 local"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="local/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/local.dir/local.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 local/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tools">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/tools.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 tools"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tools/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/tools.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 tools/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="system">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/system.dir/system.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 system"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="system/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/system.dir/system.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 system/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="scale">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/libscale.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 scale"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="scale/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/libscale.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 scale/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="processor">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir/processor.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 processor"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="processor/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir/processor.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 processor/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="setup">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/setup" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 setup"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="setup/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/setup" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 setup/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="io">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/io.dir/io.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 io"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="io/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/io.dir/io.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 io/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gc">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/gc.dir/gc.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 gc"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gc/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/gc.dir/gc.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 gc/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="fhe">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/fhe.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 fhe"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="fhe/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/fhe.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 fhe/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="exceptions">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/exceptions.dir/exceptions.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 exceptions"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="exceptions/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/exceptions.dir/exceptions.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 exceptions/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lsss">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/lsss.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 lsss"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lsss/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/lsss.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 lsss/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ot">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/ot.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/cryptopp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 ot"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ot/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/ot.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/cryptopp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 ot/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mpcmath">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/mpcmath.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 mpcmath"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mpcmath/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/mpcmath.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 mpcmath/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="offline">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/offline.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 offline"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="offline/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/offline.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 offline/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="online">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/online.dir/online.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 online"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="online/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/online.dir/online.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 online/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Exceptions/handler.cpp">
+			<Option target="exceptions"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Exceptions/handler.h">
+			<Option target="exceptions"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Ciphertext.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Ciphertext.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Distributions.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Distributions.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FFT.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FFT.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FFT_Data.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FFT_Data.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FHE_Keys.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FHE_Keys.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FHE_Params.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/FHE_Params.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Plaintext.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Plaintext.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Random_Coins.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Random_Coins.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Ring.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Ring.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Ring_Element.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Ring_Element.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Rq_Element.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/Rq_Element.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/ZKPoK.cpp">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/FHE/ZKPoK.h">
+			<Option target="fhe"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/Base_Circuits.cpp">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/Base_Circuits.h">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/Circuit.cpp">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/Circuit.h">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/Garbled.cpp">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/Garbled.h">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/SimplifyCircuit.cpp">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/GC/SimplifyCircuit.h">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Input_Output/Input_Output_Base.cpp">
+			<Option target="io"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Input_Output/Input_Output_Base.h">
+			<Option target="io"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Input_Output/Input_Output_Simple.cpp">
+			<Option target="io"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Input_Output/Input_Output_Simple.h">
+			<Option target="io"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/CAS.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/CAS.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/MSP.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/MSP.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/Open_Protocol.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/Open_Protocol.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/PRSS.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/PRSS.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/PRZS.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/PRZS.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/Schur_Matrices.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/Schur_Matrices.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/Share.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/Share.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/ShareData.cpp">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/LSSS/ShareData.h">
+			<Option target="lsss"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Local/BLAS.cpp">
+			<Option target="local"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Local/BLAS.h">
+			<Option target="local"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Local/Local_Functions.cpp">
+			<Option target="local"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Local/Local_Functions.h">
+			<Option target="local"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/Integer.cpp">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/Integer.h">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/Matrix.cpp">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/Matrix.h">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/Zp_Data.cpp">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/Zp_Data.h">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/bigint.cpp">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/bigint.h">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/gf2n.cpp">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/gf2n.h">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/gfp.cpp">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/gfp.h">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/modp.cpp">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Math/modp.h">
+			<Option target="mpcmath"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/BitMatrix.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/BitMatrix.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/BitVector.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/BitVector.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/COT.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/COT.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/CRS.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/CRS.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/DMC.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/DMC.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/HaAND.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/HaAND.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/LaAND.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/LaAND.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/ROT.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/ROT.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/SimpleROT.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/SimpleROT.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aAND.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aAND.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aAND_Thread.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aAND_Thread.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBit.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBit.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBitFactory.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBitFactory.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBitVector.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBitVector.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBit_Thread.cpp">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/OT/aBit_Thread.h">
+			<Option target="ot"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/DABitGenerator.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/DABitGenerator.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/DABitMachine.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/DABitMachine.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/FHE_Factory.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/FHE_Factory.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/FakePrep.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/FakePrep.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/XOR_Machine.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/XOR_Machine.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_FHE.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_FHE.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_IO_production.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_IO_production.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_Maurer.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_Maurer.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_Reduced.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_Reduced.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_data.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_data.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_phases.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_phases.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_subroutines.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/offline_subroutines.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/sacrifice.cpp">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Offline/sacrifice.h">
+			<Option target="offline"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Online/Machine.cpp">
+			<Option target="online"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Online/Machine.h">
+			<Option target="online"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Online/Online.cpp">
+			<Option target="online"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Online/Online.h">
+			<Option target="online"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Online/Schedule.cpp">
+			<Option target="online"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Online/Schedule.h">
+			<Option target="online"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Player.cpp">
+			<Option target="player"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Instruction.cpp">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Instruction.h">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Memory.cpp">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Memory.h">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Processor.cpp">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Processor.h">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Processor_IO.cpp">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Processor_IO.h">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Program.cpp">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Processor/Program.h">
+			<Option target="processor"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Setup.cpp">
+			<Option target="setup"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/Networking.cpp">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/Networking.h">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/Player.cpp">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/Player.h">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/RunTime.cpp">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/RunTime.h">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/SystemData.cpp">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/System/SystemData.h">
+			<Option target="system"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/CBC-MAC.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/CBC-MAC.h">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/Crypto.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/Crypto.h">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/MMO.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/MMO.h">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/Timer.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/Timer.h">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/aes-ni.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/aes.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/aes.h">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/random.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/random.h">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/util_containers.cpp">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/util_containers.h">
+			<Option target="tools"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/exceptions.dir/Exceptions/handler.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/Ciphertext.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/Distributions.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/FFT.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/FFT_Data.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/FHE_Keys.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/FHE_Params.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/Plaintext.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/Random_Coins.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/Ring.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/Ring_Element.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/Rq_Element.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir/FHE/ZKPoK.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/gc.dir/GC/Base_Circuits.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/gc.dir/GC/Circuit.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/gc.dir/GC/Garbled.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/gc.dir/GC/SimplifyCircuit.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/io.dir/Input_Output/Input_Output_Base.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/io.dir/Input_Output/Input_Output_Simple.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/local.dir/Local/BLAS.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/local.dir/Local/Local_Functions.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/CAS.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/MSP.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/Open_Protocol.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/PRSS.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/PRZS.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/Schur_Matrices.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/Share.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/lsss.dir/LSSS/ShareData.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/Math/Integer.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/Math/Matrix.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/Math/Zp_Data.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/Math/bigint.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/Math/gf2n.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/Math/gfp.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/mpcmath.dir/Math/modp.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/DABitGenerator.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/DABitMachine.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/FHE_Factory.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/FakePrep.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/XOR_Machine.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline_FHE.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline_IO_production.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline_Maurer.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline_Reduced.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline_data.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline_phases.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/offline_subroutines.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/offline.dir/Offline/sacrifice.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/online.dir/Online/Machine.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/online.dir/Online/Online.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/online.dir/Online/Schedule.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/BitMatrix.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/BitVector.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/COT.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/CRS.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/DMC.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/HaAND.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/LaAND.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/ROT.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/SimpleROT.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/aAND.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/aAND_Thread.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/aBit.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/aBitFactory.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/aBitVector.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/ot.dir/OT/aBit_Thread.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir/Processor/Instruction.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir/Processor/Memory.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir/Processor/Processor.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir/Processor/Processor_IO.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir/Processor/Program.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/system.dir/System/Networking.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/system.dir/System/Player.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/system.dir/System/RunTime.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/system.dir/System/SystemData.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/CBC-MAC.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/Crypto.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/MMO.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/Timer.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/aes-ni.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/aes.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/random.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/util_containers.cpp.o">
+			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-modules/FindCryptoPP.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-modules/FindMPIR.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-modules/FindMPIRXX.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
