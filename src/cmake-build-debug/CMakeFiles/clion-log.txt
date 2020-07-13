@@ -1,5 +1,4 @@
 /home/tilenmarc/Programs/clion-2020.1.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DOPENSSL_ROOT_DIR=/home/tilenmarc/Programs/openssl -DCRYPTOPP_ROOT_DIR=/home/tilenmarc/Programs/cryptopp -DMPIR_ROOT_DIR=/home/tilenmarc/Programs/mpir -G "CodeBlocks - Unix Makefiles" /home/tilenmarc/git/SCALE_MAMBA_MY/src
--- Found OpenSSL: /home/tilenmarc/Programs/openssl/lib/libcrypto.so (found version "1.1.1g")  
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug
