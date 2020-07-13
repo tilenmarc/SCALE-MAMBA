@@ -331,3 +331,7 @@ void Close_Connections(int ssocket, vector<vector<vector<int>>> &csocket,
   // Close server socket
   close(ssocket);
 }
+
+int Open_Connection_Go() {
+  return 0;
+}

@@ -55,7 +55,7 @@ public:
   virtual void output_share(const Share &S, unsigned int channel);
   virtual Share input_share(unsigned int channel);
 
-  virtual void trigger(Schedule &schedule, int whoami);
+  virtual void trigger(Schedule &schedule, int whoami, int go_soc);
 
   virtual void debug_output(const stringstream &ss);
 

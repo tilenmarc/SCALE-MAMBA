@@ -56,6 +56,8 @@ public:
 
   Machine *machine;       // Pointer to the machine
   FHE_Industry *industry; // Pointer to the FHE set of factories
+
+  int go_soc;
 };
 
 // We have 5 threads per online phase
@@ -124,6 +126,7 @@ void Run_Scale(unsigned int my_number, unsigned int no_online_threads,
   // Add in the OT threads
   tnthreads+= 2;
   daBitMachine.Initialize(SD.n, OCD);
+  int go_socket =
 
   /* Initialize the networking TCP sockets */
   int ssocket;
@@ -166,6 +169,7 @@ void Run_Scale(unsigned int my_number, unsigned int no_online_threads,
       tinfo[i].sk= &sk;
       tinfo[i].PTD= &PTD;
       tinfo[i].verbose= verbose;
+      tinfo[i].go_soc= go_socket;
       if (pthread_create(&threads[i], NULL, Main_Func, &tinfo[i]))
         {
           throw C_problem("Problem spawning thread");
@@ -242,7 +246,7 @@ void *Main_Func(void *ptr)
   printf("I am player %d in thread %d\n", me, num);
   fflush(stdout);
 
-  Player P(me, *(tinfo->SD), num, (tinfo->ctx), (tinfo->csockets), (tinfo->MacK), verbose - 1);
+  Player P(me, *(tinfo->SD), num, (tinfo->ctx), (tinfo->csockets), tinfo->go_soc, (tinfo->MacK), verbose - 1);
 
   printf("Set up player %d in thread %d \n", me, num);
   fflush(stdout);

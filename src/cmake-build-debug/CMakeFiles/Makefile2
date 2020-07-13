@@ -209,17 +209,17 @@ CMakeFiles/system.dir/clean:
 # Target rules for target CMakeFiles/scale.dir
 
 # All Build rule for target.
-CMakeFiles/scale.dir/all: CMakeFiles/lsss.dir/all
+CMakeFiles/scale.dir/all: CMakeFiles/local.dir/all
+CMakeFiles/scale.dir/all: CMakeFiles/tools.dir/all
 CMakeFiles/scale.dir/all: CMakeFiles/system.dir/all
 CMakeFiles/scale.dir/all: CMakeFiles/processor.dir/all
-CMakeFiles/scale.dir/all: CMakeFiles/tools.dir/all
 CMakeFiles/scale.dir/all: CMakeFiles/io.dir/all
-CMakeFiles/scale.dir/all: CMakeFiles/mpcmath.dir/all
-CMakeFiles/scale.dir/all: CMakeFiles/local.dir/all
-CMakeFiles/scale.dir/all: CMakeFiles/fhe.dir/all
-CMakeFiles/scale.dir/all: CMakeFiles/ot.dir/all
 CMakeFiles/scale.dir/all: CMakeFiles/gc.dir/all
+CMakeFiles/scale.dir/all: CMakeFiles/fhe.dir/all
 CMakeFiles/scale.dir/all: CMakeFiles/exceptions.dir/all
+CMakeFiles/scale.dir/all: CMakeFiles/lsss.dir/all
+CMakeFiles/scale.dir/all: CMakeFiles/ot.dir/all
+CMakeFiles/scale.dir/all: CMakeFiles/mpcmath.dir/all
 CMakeFiles/scale.dir/all: CMakeFiles/offline.dir/all
 CMakeFiles/scale.dir/all: CMakeFiles/online.dir/all
 	$(MAKE) -f CMakeFiles/scale.dir/build.make CMakeFiles/scale.dir/depend

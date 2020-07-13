@@ -407,7 +407,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_MPIR:INTERNAL=[/home/tilenmarc/Programs/mpir/lib/li
 //Details about finding MPIRXX
 FIND_PACKAGE_MESSAGE_DETAILS_MPIRXX:INTERNAL=[/home/tilenmarc/Programs/mpir/lib/libmpirxx.so][/home/tilenmarc/Programs/mpir/include][v()]
 //Details about finding OpenSSL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/home/tilenmarc/Programs/openssl/lib/libcrypto.so][/home/tilenmarc/Programs/openssl/include][c ][v1.1.0j()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/home/tilenmarc/Programs/openssl/lib/libcrypto.so][/home/tilenmarc/Programs/openssl/include][c ][v1.1.1g()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: MPIRXX_INCLUDE_DIR

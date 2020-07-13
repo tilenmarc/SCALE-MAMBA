@@ -29,4 +29,6 @@ void Get_Connections(int &ssocket, vector<vector<vector<int>>> &csocket,
 void Close_Connections(int ssocket, vector<vector<vector<int>>> &csocket,
                        unsigned int me);
 
+int Open_Connection_Go();
+
 #endif

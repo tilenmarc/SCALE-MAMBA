@@ -24,6 +24,7 @@ inline void Destroy_SSL_CTX(SSL_CTX *ctx) { SSL_CTX_free(ctx); }
 class Player
 {
   unsigned int me; // My player number
+  int my_soc_go; // My socket to go
 
 #ifdef BENCH_NETDATA
   // network data in bytes
@@ -61,7 +62,7 @@ public:
 
   // Thread specifies which thread this instance is related to
   Player(int mynumber, const SystemData &SD, int thread, SSL_CTX *ctx,
-         vector<vector<int>> &csockets,
+         vector<vector<int>> &csockets, int go_soc,
          const vector<gfp> &MacK, int verbose);
 
   ~Player();
@@ -74,6 +75,10 @@ public:
   unsigned int whoami() const
   {
     return me;
+  }
+  int get_go_soc() const
+  {
+    return my_soc_go;
   }
   unsigned int nplayers() const
   {
