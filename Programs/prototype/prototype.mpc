@@ -7,4 +7,4 @@ print_ln(' a=%s',reveal(a))
 
 output_result(b)
 
-# restart()
+restart()

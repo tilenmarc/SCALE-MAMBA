@@ -124,6 +124,8 @@ int OpenListener(int port, int max)
                   number_to_string(errno);
       throw Networking_error(err);
     }
+  printf("Here ...\n");
+
   return sd;
 }
 
@@ -330,4 +332,26 @@ void Close_Connections(int ssocket, vector<vector<vector<int>>> &csocket,
     }
   // Close server socket
   close(ssocket);
+}
+
+int Get_Go_Connection()
+{
+  int server_fd, new_socket;
+  struct sockaddr_in address;
+  int addrlen = sizeof(address);
+
+  server_fd = OpenListener(5009, 1);
+  printf("finished\n");
+  address.sin_family = AF_INET;
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_port = htons( 5009 );
+
+  if ((new_socket = accept(server_fd, (struct sockaddr *)&address,
+                           (socklen_t*)&addrlen))<0)
+    {
+      perror("accept");
+      exit(EXIT_FAILURE);
+    }
+
+  return new_socket;
 }

@@ -29,6 +29,7 @@ public:
   vector<string> IP;        // IP Addresses
   vector<string> PlayerCRT; // Player Certificate File
   vector<string> PlayerCN;  // Player Common Name
+  int socket_to_go;
 
   int fake_offline;
   int fake_sacrifice;

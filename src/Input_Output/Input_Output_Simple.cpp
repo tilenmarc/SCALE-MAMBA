@@ -110,8 +110,9 @@ Share Input_Output_Simple::input_share(unsigned int channel)
   return S;
 }
 
-void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
+void Input_Output_Simple::trigger(Schedule &schedule, int whoimi, int test)
 {
+    printf("test%d \n", test);
     while (true) {
         std::ifstream trigger_file("Input/trigger" + std::to_string(whoimi) + ".txt");
 

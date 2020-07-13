@@ -56,6 +56,8 @@ public:
 
   Machine *machine;       // Pointer to the machine
   FHE_Industry *industry; // Pointer to the FHE set of factories
+
+  int go_socket;  // Information about a socket to Go
 };
 
 // We have 5 threads per online phase
@@ -130,6 +132,9 @@ void Run_Scale(unsigned int my_number, unsigned int no_online_threads,
   vector<vector<vector<int>>> csockets(tnthreads, vector<vector<int>>(SD.n, vector<int>(3)));
   Get_Connections(ssocket, csockets, portnum, my_number, SD, verbose - 2);
   printf("All connections now done\n");
+  /* Connect to Go client */
+//  int socket_to_go = Get_Go_Connection();
+  int socket_to_go = 222;
 
   FHE_Industry industry(number_FHE_threads);
 
@@ -166,6 +171,7 @@ void Run_Scale(unsigned int my_number, unsigned int no_online_threads,
       tinfo[i].sk= &sk;
       tinfo[i].PTD= &PTD;
       tinfo[i].verbose= verbose;
+      tinfo[i].go_socket= socket_to_go;
       if (pthread_create(&threads[i], NULL, Main_Func, &tinfo[i]))
         {
           throw C_problem("Problem spawning thread");
@@ -242,7 +248,7 @@ void *Main_Func(void *ptr)
   printf("I am player %d in thread %d\n", me, num);
   fflush(stdout);
 
-  Player P(me, *(tinfo->SD), num, (tinfo->ctx), (tinfo->csockets), (tinfo->MacK), verbose - 1);
+  Player P(me, *(tinfo->SD), num, (tinfo->ctx), (tinfo->csockets), tinfo->go_socket, (tinfo->MacK), verbose - 1);
 
   printf("Set up player %d in thread %d \n", me, num);
   fflush(stdout);

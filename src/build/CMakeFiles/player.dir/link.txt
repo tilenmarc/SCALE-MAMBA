@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/player.dir/Player.cpp.o  -o player  libscale.a -pthread /home/tilenmarc/Programs/openssl/lib/libssl.so /home/tilenmarc/Programs/openssl/lib/libcrypto.so /home/tilenmarc/Programs/cryptopp/lib/libcryptopp.a /home/tilenmarc/Programs/mpir/lib/libmpir.so /home/tilenmarc/Programs/mpir/lib/libmpirxx.so 

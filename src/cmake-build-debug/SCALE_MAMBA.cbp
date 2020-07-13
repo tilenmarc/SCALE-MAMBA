@@ -17,6 +17,56 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="server2">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/server2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 server2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server2/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/server2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 server2/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="player">
 				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/player" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
@@ -402,6 +452,56 @@
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 io/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client2">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/client2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 client2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client2/fast">
+				<Option output="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/client2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAX_MOD_SZ=7"/>
+					<Add directory="/home/tilenmarc/git/SCALE_MAMBA_MY/src"/>
+					<Add directory="/home/tilenmarc/Programs/openssl/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 client2/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -1327,6 +1427,9 @@
 		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/Tools/util_containers.h">
 			<Option target="tools"/>
 		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/client_try.cpp">
+			<Option target="client2"/>
+		</Unit>
 		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/exceptions.dir/Exceptions/handler.cpp.o">
 			<Option target="scale"/>
 		</Unit>
@@ -1581,6 +1684,9 @@
 		</Unit>
 		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir/Tools/util_containers.cpp.o">
 			<Option target="scale"/>
+		</Unit>
+		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/server_try.cpp">
+			<Option target="server2"/>
 		</Unit>
 		<Unit filename="/home/tilenmarc/git/SCALE_MAMBA_MY/src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

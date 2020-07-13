@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../System/Networking.h
+SystemData.h
+../System/SystemData.h
+
+../System/SystemData.h
+string
+-
+vector
+-
+
+/home/tilenmarc/git/SCALE_MAMBA_MY/src/server_try.cpp
+unistd.h
+-
+stdio.h
+-
+sys/socket.h
+-
+stdlib.h
+-
+netinet/in.h
+-
+string.h
+-
+System/Networking.h
+-
+

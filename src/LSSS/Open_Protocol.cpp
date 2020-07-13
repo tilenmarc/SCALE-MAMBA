@@ -286,6 +286,7 @@ void Open_Protocol::RunOpenCheck(Player &P, const string &aux, int connection, b
       unsigned char hash[SHA256_DIGEST_LENGTH];
       SHA256_Final(hash, &sha256[connection]);
       string ss((char *) hash, SHA256_DIGEST_LENGTH);
+      printf("sending bla: %s \n", ss.c_str());
       if (verbose)
         {
           printf("Open Check: Sending  : %d : ", P.whoami());
@@ -313,8 +314,13 @@ void Open_Protocol::RunOpenCheck(Player &P, const string &aux, int connection, b
                   printf("\n");
                   printf("%lu %d\n", is.size(), SHA256_DIGEST_LENGTH);
                 }
+
+              printf("%d, bla: %s \n", i, is.c_str());
+              printf("%d, bla2: %s \n", i, ss.c_str());
+
               if (is != ss)
                 {
+                  printf("here22222\n");
                   throw hash_fail();
                 }
             }

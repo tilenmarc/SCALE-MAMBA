@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tilenmarc/git/SCALE_MAMBA_MY/src/Exceptions/handler.cpp
+handler.h
+/home/tilenmarc/git/SCALE_MAMBA_MY/src/Exceptions/handler.h
+cxxabi.h
+-
+execinfo.h
+-
+stdlib.h
+-
+iostream
+-
+
+/home/tilenmarc/git/SCALE_MAMBA_MY/src/Exceptions/handler.h
+

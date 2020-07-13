@@ -182,3 +182,9 @@ target_link_libraries(player PRIVATE scale)
 
 add_executable(setup Setup.cpp)
 target_link_libraries(setup PRIVATE OpenSSL::Crypto OpenSSL::SSL scale)
+
+add_executable(server2 server_try.cpp)
+target_link_libraries(server2 PRIVATE OpenSSL::Crypto OpenSSL::SSL scale)
+
+add_executable(client2 client_try.cpp)
+target_link_libraries(client2 PRIVATE OpenSSL::Crypto OpenSSL::SSL scale)

@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named server2
+
+# Build rule for target.
+server2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 server2
+.PHONY : server2
+
+# fast build rule for target.
+server2/fast:
+	$(MAKE) -f CMakeFiles/server2.dir/build.make CMakeFiles/server2.dir/build
+.PHONY : server2/fast
+
+#=============================================================================
 # Target rules for targets named player
 
 # Build rule for target.
@@ -213,6 +226,19 @@ io: cmake_check_build_system
 io/fast:
 	$(MAKE) -f CMakeFiles/io.dir/build.make CMakeFiles/io.dir/build
 .PHONY : io/fast
+
+#=============================================================================
+# Target rules for targets named client2
+
+# Build rule for target.
+client2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client2
+.PHONY : client2
+
+# fast build rule for target.
+client2/fast:
+	$(MAKE) -f CMakeFiles/client2.dir/build.make CMakeFiles/client2.dir/build
+.PHONY : client2/fast
 
 #=============================================================================
 # Target rules for targets named gc
@@ -2667,12 +2693,67 @@ Tools/util_containers.cpp.s:
 	$(MAKE) -f CMakeFiles/tools.dir/build.make CMakeFiles/tools.dir/Tools/util_containers.cpp.s
 .PHONY : Tools/util_containers.cpp.s
 
+client_try.o: client_try.cpp.o
+
+.PHONY : client_try.o
+
+# target to build an object file
+client_try.cpp.o:
+	$(MAKE) -f CMakeFiles/client2.dir/build.make CMakeFiles/client2.dir/client_try.cpp.o
+.PHONY : client_try.cpp.o
+
+client_try.i: client_try.cpp.i
+
+.PHONY : client_try.i
+
+# target to preprocess a source file
+client_try.cpp.i:
+	$(MAKE) -f CMakeFiles/client2.dir/build.make CMakeFiles/client2.dir/client_try.cpp.i
+.PHONY : client_try.cpp.i
+
+client_try.s: client_try.cpp.s
+
+.PHONY : client_try.s
+
+# target to generate assembly for a file
+client_try.cpp.s:
+	$(MAKE) -f CMakeFiles/client2.dir/build.make CMakeFiles/client2.dir/client_try.cpp.s
+.PHONY : client_try.cpp.s
+
+server_try.o: server_try.cpp.o
+
+.PHONY : server_try.o
+
+# target to build an object file
+server_try.cpp.o:
+	$(MAKE) -f CMakeFiles/server2.dir/build.make CMakeFiles/server2.dir/server_try.cpp.o
+.PHONY : server_try.cpp.o
+
+server_try.i: server_try.cpp.i
+
+.PHONY : server_try.i
+
+# target to preprocess a source file
+server_try.cpp.i:
+	$(MAKE) -f CMakeFiles/server2.dir/build.make CMakeFiles/server2.dir/server_try.cpp.i
+.PHONY : server_try.cpp.i
+
+server_try.s: server_try.cpp.s
+
+.PHONY : server_try.s
+
+# target to generate assembly for a file
+server_try.cpp.s:
+	$(MAKE) -f CMakeFiles/server2.dir/build.make CMakeFiles/server2.dir/server_try.cpp.s
+.PHONY : server_try.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... server2"
 	@echo "... player"
 	@echo "... local"
 	@echo "... tools"
@@ -2681,6 +2762,7 @@ help:
 	@echo "... processor"
 	@echo "... setup"
 	@echo "... io"
+	@echo "... client2"
 	@echo "... gc"
 	@echo "... fhe"
 	@echo "... exceptions"
@@ -2952,6 +3034,12 @@ help:
 	@echo "... Tools/util_containers.o"
 	@echo "... Tools/util_containers.i"
 	@echo "... Tools/util_containers.s"
+	@echo "... client_try.o"
+	@echo "... client_try.i"
+	@echo "... client_try.s"
+	@echo "... server_try.o"
+	@echo "... server_try.i"
+	@echo "... server_try.s"
 .PHONY : help
 
 

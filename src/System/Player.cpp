@@ -140,7 +140,7 @@ void Init_SSL_CTX(SSL_CTX *&ctx, unsigned int me, const SystemData &SD, const st
 }
 
 Player::Player(int mynumber, const SystemData &SD, int thread, SSL_CTX *ctx,
-               vector<vector<int>> &csockets, const vector<gfp> &MacK, int verbose)
+               vector<vector<int>> &csockets, int go_socket, const vector<gfp> &MacK, int verbose)
 {
   clocks.resize(10);
   G.ReSeed(thread);
@@ -151,6 +151,8 @@ Player::Player(int mynumber, const SystemData &SD, int thread, SSL_CTX *ctx,
 
   me= mynumber;
   ssl.resize(SD.n);
+
+  socket_to_go = go_socket;
 
 #ifdef BENCH_NETDATA
   br_messages_sent= 0;
@@ -421,6 +423,7 @@ void Player::Check_Broadcast(int connection)
           receive_from_player(i, is, connection);
           if (is != ss)
             {
+              printf("HERE\n");
               throw hash_fail();
             }
         }

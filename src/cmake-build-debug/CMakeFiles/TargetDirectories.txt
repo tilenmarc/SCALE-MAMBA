@@ -1,3 +1,4 @@
+/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/server2.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/player.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/local.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/tools.dir
@@ -6,6 +7,7 @@
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/processor.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/setup.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/io.dir
+/home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/client2.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/gc.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/fhe.dir
 /home/tilenmarc/git/SCALE_MAMBA_MY/src/cmake-build-debug/CMakeFiles/exceptions.dir
