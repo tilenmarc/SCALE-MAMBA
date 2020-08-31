@@ -378,6 +378,8 @@ int main(int argc, const char *argv[])
   io->init(cin, cout, true);
   machine.Setup_IO(std::move(io));
 
+  printf("Scheme %d \n", Share::SD.type);
+
   // Load the initial tapes for the first program into the schedule
   unsigned int no_online_threads= machine.schedule.Load_Programs(progname);
 

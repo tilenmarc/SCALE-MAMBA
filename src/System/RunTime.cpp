@@ -126,7 +126,15 @@ void Run_Scale(unsigned int my_number, unsigned int no_online_threads,
   // Add in the OT threads
   tnthreads+= 2;
   daBitMachine.Initialize(SD.n, OCD);
-  int go_socket = Get_Go_Connection();
+
+  int go_socket;
+  if (my_number == 2) {
+//      go_socket = Get_Go_Connection();
+      go_socket = 45678;
+
+  } else {
+      go_socket = 45678;
+  }
 
   /* Initialize the networking TCP sockets */
   int ssocket;

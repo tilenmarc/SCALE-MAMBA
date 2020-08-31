@@ -7,6 +7,8 @@ All rights reserved
 
 #include "Input_Output_Simple.h"
 #include "Exceptions/Exceptions.h"
+#include <cstring>
+#include <sys/socket.h>
 #include <unistd.h>
 
 long Input_Output_Simple::open_channel(unsigned int channel)
@@ -25,21 +27,51 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel)
   string line;
   word x;
 
-  ifstream myfile;
-  string name;
-  name = "Input/data" + std::to_string(channel) + ".txt";
-  myfile.open(name);
-  for (int i = 0; i < counter1; i++) {
-    getline (myfile, line);
-  }
-  getline (myfile, line);
+  printf("input %d %d:\n", start_check, counter1);
+
+  if (start_check == 0) {
+      printf("input:\n");
+
+      start_check = 1;
+
+      ifstream myfile;
+      string name;
+      // name = "Input/data" + std::to_string(channel) + ".txt";
+      name = "Input/data0.txt";
+
+      int size_of_vector = 0;
+      myfile.open(name);
+      while (std::getline(myfile, line))
+        {
+          size_of_vector++;
+        }
+      myfile.close();
+      printf("number of inputs %d \n", size_of_vector);
+
+      input_vector = (unsigned long *)malloc(sizeof(unsigned long) * (size_of_vector + 1));
+      myfile.open(name);
+      for (int i = 0; i < size_of_vector; i++) {
+          getline (myfile, line);
+          input_vector[i] = std::stoul(line);
+        }
+      input_vector[size_of_vector] = (unsigned long)NULL;
+      myfile.close();
+    }
+
+
+  printf("%d\n", input_vector[counter1]);
+
+//  for (int i = 0; i < counter1; i++) {
+//    getline (myfile, line);
+//  }
+//  getline (myfile, line);
 //  cout << "counter " << counter1 << "  " << line;
 
-  x = std::stoul(line);
-  myfile.close();
+//  x = std::stoul(line);
   gfp y;
-  y.assign(x);
+  y.assign(input_vector[counter1]);
   counter1++;
+  printf("done\n");
   return y;
 }
 
@@ -113,27 +145,60 @@ Share Input_Output_Simple::input_share(unsigned int channel)
 void Input_Output_Simple::trigger(Schedule &schedule, int whoimi, int go_soc)
 {
     printf("bla: %d\n", go_soc);
-    while (true) {
-        std::ifstream trigger_file("Input/trigger" + std::to_string(whoimi) + ".txt");
-
-        if (trigger_file.is_open())
-        {
-            std::string line;
-            std::getline(trigger_file, line);
-//            std::cout << line << whoimi << "\n";
-            if (line == "restart") {
-                trigger_file.clear();
-
-                ofstream new_trigger_file;
-                new_trigger_file.open ("Input/trigger" + std::to_string(whoimi) + ".txt");
-                new_trigger_file << "wait\n";
-                new_trigger_file.close();
-                break;
-            }
-            trigger_file.clear();
-        }
-        usleep(100000);
-    }
+  printf("Restart requested: Enter a number to proceed\n");
+  int i;
+  cin >> i;
+//    if (whoimi == 2) {
+//        char finished_msg[] = "fin";
+//        send(go_soc , finished_msg , strlen(finished_msg) , 0 );
+//
+//        while (true) {
+//          char buffer[1024] = {0};
+//          read(go_soc, buffer, 1024);
+//          printf("received msg %s\n", buffer);
+//          char restart_msg[] = "restart";
+//          send(go_soc , restart_msg , strlen(restart_msg) , 0 );
+//          if (buffer[0] == '1') {
+//              printf("restart %s\n", buffer);
+//              send(go_soc , restart_msg , strlen(restart_msg) , 0 );
+//              break;
+//            }
+//            restart_msg[0] = 'n';
+//            send(go_soc , restart_msg , strlen(restart_msg) , 0 );
+//            printf("not equal %s\n", buffer);
+//
+//            sleep(1);
+//          }
+//    }
+//
+////    sleep(10);
+//
+//
+//
+////    send(new_socket , hello , strlen(hello) , 0 );
+////    printf("Hello message sent\n");
+//
+////    while (true) {
+////        std::ifstream trigger_file("Input/trigger" + std::to_string(whoimi) + ".txt");
+////
+////        if (trigger_file.is_open())
+////        {
+////            std::string line;
+////            std::getline(trigger_file, line);
+//////            std::cout << line << whoimi << "\n";
+////            if (line == "restart") {
+////                trigger_file.clear();
+////
+////                ofstream new_trigger_file;
+////                new_trigger_file.open ("Input/trigger" + std::to_string(whoimi) + ".txt");
+////                new_trigger_file << "wait\n";
+////                new_trigger_file.close();
+////                break;
+////            }
+////            trigger_file.clear();
+////        }
+////        usleep(100000);
+////    }
 
 
   // Load new schedule file program streams, using the original
@@ -143,6 +208,9 @@ void Input_Output_Simple::trigger(Schedule &schedule, int whoimi, int go_soc)
   // programs you want to run are, by directly editing the
   // public variables in the schedule object.
   counter1 = 0;
+  start_check = 0;
+  free(input_vector);
+
   unsigned int nthreads= schedule.Load_Programs();
   if (schedule.max_n_threads() < nthreads)
     {

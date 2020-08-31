@@ -31,6 +31,7 @@ void Processor_IO::private_input(unsigned int player, int target, unsigned int c
   if (player == P.whoami())
     {
       i_epsilon= machine.get_IO().private_input_gfp(channel);
+      printf("here1");
     }
 
   stringstream ss;

@@ -23,7 +23,10 @@ class Input_Output_Simple : public Input_Output_Base
 {
   istream *inpf;
   ostream *outf;
-  int counter1 = 0;
+  unsigned long *input_vector;
+  int start_check;
+  int counter1;
+
   bool human; // Only affects share output
 
 public:
@@ -38,6 +41,8 @@ public:
     inpf= &ifs;
     outf= &ofs;
     human= human_type;
+    // counter1 = 0;
+    // start_check = 1;
   }
 
   virtual long open_channel(unsigned int channel);
