@@ -19,7 +19,7 @@ All rights reserved
 void aBitFactory::Initialize(Player &P)
 {
   gf2n::init_field(OT_comp_sec);
-
+  printf("hh");
   unsigned int n= P.nplayers(), whoami= P.whoami();
 
   G.ReSeed(20000);

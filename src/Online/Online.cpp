@@ -16,6 +16,7 @@ extern OT_Thread_Data OTD;
 void online_phase(int online_num, Player &P, offline_control_data &OCD,
                   Machine &machine)
 {
+//  sleep(60);
   printf("Doing online for player %d in online thread %d\n", P.whoami(),
          online_num);
   fflush(stdout);

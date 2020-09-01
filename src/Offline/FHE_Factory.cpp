@@ -425,6 +425,9 @@ void FHE_Industry::FHE_Factory(Player &P, const offline_control_data &OCD, const
                                unsigned int mynumber,
                                int verbose)
 {
+  sleep(40);
+  printf("Factory start start: \n");
+
   PRNG G;
   G.ReSeed(10000 + mynumber);
 

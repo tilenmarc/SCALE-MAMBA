@@ -56,6 +56,7 @@ int check_exit(int num_online, const Player &P, offline_control_data &OCD, ODtyp
             {
               case Triples:
                 //OCD.mul_mutex[num_online].lock();
+                printf("triplets at check %d \n",  OCD.totm[num_online]);
                 if ((SacrificeD[num_online].TD.ta.size() > max_triples_sacrifice) || (OCD.totm[num_online] > OCD.maxm && OCD.maxm != 0))
                   {
                     result= 2;
@@ -65,7 +66,9 @@ int check_exit(int num_online, const Player &P, offline_control_data &OCD, ODtyp
                 break;
               case Squares:
                 //OCD.sqr_mutex[num_online].lock();
-                if ((SacrificeD[num_online].SD.sa.size() > max_squares_sacrifice) || (OCD.tots[num_online] > OCD.maxs && OCD.maxs != 0))
+                printf("squares at check %d \n",  OCD.tots[num_online]);
+
+              if ((SacrificeD[num_online].SD.sa.size() > max_squares_sacrifice) || (OCD.tots[num_online] > OCD.maxs && OCD.maxs != 0))
                   {
                     result= 2;
                     ss= "W";
@@ -73,7 +76,9 @@ int check_exit(int num_online, const Player &P, offline_control_data &OCD, ODtyp
                 //OCD.sqr_mutex[num_online].unlock();
                 break;
               case Bits:
-                //OCD.bit_mutex[num_online].lock();
+                printf("bits at check %d \n",  OCD.totb[num_online]);
+
+              //OCD.bit_mutex[num_online].lock();
                 if ((SacrificeD[num_online].BD.bb.size() > max_bits_sacrifice) || (OCD.totb[num_online] > OCD.maxb && OCD.maxb != 0))
                   {
                     result= 2;
@@ -108,6 +113,8 @@ void mult_phase(int num_online, Player &P, int fake_sacrifice,
                 FHE_Industry &industry,
                 int verbose)
 {
+//  sleep(30);
+//  printf("Triplets start: \n");
   // Initialize PRSS stuff
   PRSS prss(P);
   PRZS przs(P);
@@ -171,6 +178,8 @@ void square_phase(int num_online, Player &P, int fake_sacrifice,
                   FHE_Industry &industry,
                   int verbose)
 {
+//  sleep(30);
+//  printf("Squares start: \n");
   // Initialize PRSS stuff
   PRSS prss(P);
   PRZS przs(P);
@@ -233,6 +242,8 @@ void bit_phase(int num_online, Player &P, int fake_sacrifice,
                FHE_Industry &industry,
                int verbose)
 {
+  sleep(30);
+  printf("bits start: \n");
   // Initialize PRSS stuff
   PRSS prss(P);
   PRZS przs(P);
@@ -310,6 +321,9 @@ bool propose_what_to_do(int num_online, Player &P, int &finish,
     }
 
   //OCD.OCD_mutex[num_online].lock();
+  printf("inputs at check %d \n",  OCD.totI[num_online]);
+
+
   for (unsigned int i= 0; i < P.nplayers(); i++)
     {
       if ((OCD.maxI == 0 && SacrificeD[num_online].ID.ios[i].size() < max_IO_sacrifice) || (OCD.totI[num_online] < OCD.maxI))
@@ -381,6 +395,8 @@ void inputs_phase(int num_online, Player &P, int fake_sacrifice,
                   FHE_Industry &industry,
                   int verbose)
 {
+//  sleep(30);
+//  printf("Inputs start: \n");
   int finish;
 
   // Initialize PRSS stuff for IO production

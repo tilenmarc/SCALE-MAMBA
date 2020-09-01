@@ -98,6 +98,7 @@ int make_aBit_Thread_decision(Player &P)
       OTD.aBD.aBD_mutex.lock();
       for (unsigned int j= 0; j < OTD.aBD.aBits.size(); j++)
         {
+          printf("aBits bla %d %d %d \n", j, OTD.aBD.aBits[j].size(), max_aBit_queue);
           if (OTD.aBD.aBits[j].size() < max_aBit_queue)
             {
               result+= (1 << j);
@@ -129,9 +130,15 @@ int make_aBit_Thread_decision(Player &P)
 void aBit_Thread(Player &P, unsigned int no_online_threads,
                  offline_control_data &OCD, int verbose)
 {
+  sleep(40);
+  printf("aBit start start: \n");
+
   aBitFactory aBF;
 
   aBF.Initialize(P);
+
+  sleep(30);
+  printf("Initialized: \n");
 
   // Pack the last queue first, as it is used for aANDs
   OTD.aBD.aBD_mutex.lock();
@@ -142,6 +149,9 @@ void aBit_Thread(Player &P, unsigned int no_online_threads,
       printf("Size of aBit queue %d : %lu \n", no_online_threads, OTD.aBD.aBits[no_online_threads].size());
     }
   OTD.aBD.aBD_mutex.unlock();
+  sleep(40);
+  printf("Tunedee: \n");
+
 
   while (0 == 0)
     { /* Decide whether to finish */
@@ -159,10 +169,13 @@ void aBit_Thread(Player &P, unsigned int no_online_threads,
         }
       else
         {
+          printf("Parameters check %d\n", OTD.aBD.aBits.size());
           for (unsigned int j= 0; j < OTD.aBD.aBits.size(); j++)
             {
               if ((decide & 1) == 1)
                 {
+                  printf("Here 123 \n");
+
                   unsigned int m= aBF.make_aBits(P);
                   OTD.aBD.aBD_mutex.lock();
                   aBF.copy_aBits(OTD.aBD.aBits[j], m);

@@ -184,6 +184,21 @@ void Run_Scale(unsigned int my_number, unsigned int no_online_threads,
         }
     }
 
+  cout << "I will sleep now" << endl;
+
+  sleep(30);
+  cout << "before online" << endl;
+  long long total_triples= 0, total_squares= 0, total_bits= 0;
+  for (size_t i= 0; i < no_online_threads; i++)
+    {
+      total_triples+= OCD.totm[i];
+      total_squares+= OCD.tots[i];
+      total_bits+= OCD.totb[i];
+    }
+  cout << "Produced a total of " << total_triples << " triples" << endl;
+  cout << "Produced a total of " << total_squares << " squares" << endl;
+  cout << "Produced a total of " << total_bits << " bits" << endl;
+
   // Get all online threads in sync
   machine.Synchronize();
 
@@ -202,7 +217,7 @@ void Run_Scale(unsigned int my_number, unsigned int no_online_threads,
   global_time.stop();
   cout << "Total Time (with thread locking) = " << global_time.elapsed() << " seconds" << endl;
 
-  long long total_triples= 0, total_squares= 0, total_bits= 0;
+  total_triples= 0, total_squares= 0, total_bits= 0;
   for (size_t i= 0; i < no_online_threads; i++)
     {
       total_triples+= OCD.totm[i];
