@@ -90,3 +90,4 @@ Programs/*/*.bc
 *.sqlite
 *.data
 Input/*
+build/*
