@@ -91,3 +91,4 @@ Programs/*/*.bc
 *.data
 Input/*
 build/*
+Data/*
