@@ -89,3 +89,4 @@ Programs/*/*.bc
 *.sql
 *.sqlite
 *.data
+Input/*
