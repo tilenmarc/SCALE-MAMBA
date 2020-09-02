@@ -27,6 +27,7 @@ All rights reserved
 
 #include "BitMatrix.h"
 #include "CRS.h"
+#include "Math/gfp.h"
 #include "Tools/random.h"
 #include "cryptopp/randpool.h"
 #include <string>
@@ -46,13 +47,21 @@ class SimpleOT_Sender
 public:
   void init(string &output, CryptoPP::RandomPool &RNG);
 
-  bool is_complete() const { return complete; }
-  void reset() { complete= false; }
+  bool is_complete() const
+  {
+    return complete;
+  }
+  void reset()
+  {
+    complete= false;
+  }
 
   void message(const string &input);
 
   /* Returns M.size() random bits from PRG and assigns them to given row */
   void get_random_bits(unsigned int i, unsigned int row, BitMatrix &M);
+  void get_random_bits(unsigned int i, gfp &a);
+  void get_random_bits(unsigned int i, BitVector &v);
 };
 
 class SimpleOT_Receiver
@@ -71,14 +80,23 @@ class SimpleOT_Receiver
 public:
   void init(const string &input, int choicebit);
 
-  bool is_complete() const { return complete; }
+  bool is_complete() const
+  {
+    return complete;
+  }
 
   void message(string &output, CryptoPP::RandomPool &RNG);
 
   /* Returns M.size() random bits from PRG and assigns them to given row */
   void get_random_bits(unsigned int row, BitMatrix &M);
 
-  int get_bit() const { return b; }
+  void get_random_bits(gfp &a);
+  void get_random_bits(BitVector &v);
+
+  int get_bit() const
+  {
+    return b;
+  }
 };
 
 #endif

@@ -61,6 +61,7 @@ unsigned long long aBitVector::Open(Player &P) const
 
 void aBitVector::Bitwise_AND(const aBitVector &a, const aBitVector &b, Player &P, unsigned int online_thread_no)
 {
+  OTD.check();
   list<aTriple> triples= OTD.aAD.get_aANDs(online_thread_no, sreg_bitl);
   Mult_aBits(x, a.x, b.x, triples, P);
 }
@@ -178,7 +179,7 @@ void aBitVector::SHL(const aBitVector &a, unsigned int n)
       assign_zero();
       return;
     }
-  for (unsigned int i= 0; i < sreg_bitl - n; i++)
+  for (int i= sreg_bitl - n - 1; i >= 0; i--)
     {
       x[i + n]= a.x[i];
     }

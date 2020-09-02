@@ -5,7 +5,8 @@ use crate::span::{Span, Spanned};
 use crate::{errors, Compiler};
 use std::collections::HashMap;
 use std::convert::{TryFrom, TryInto};
-use std::num::NonZeroU16;
+use std::iter;
+use std::num::NonZeroU32;
 
 impl<'a> Statement<'a> {
     pub fn parse(cx: &'a Compiler, lex: &Lexical<'a>) -> Self {
@@ -13,7 +14,7 @@ impl<'a> Statement<'a> {
             let (vectorized, rest) = lex.args().split_first_or_err(cx);
             let vectorized = vectorized.require::<i32>(cx);
             let vectorized = match vectorized.elem.try_into() {
-                Ok(val) if val > 1 => Ok(vectorized.span.with(NonZeroU16::new(val).unwrap())),
+                Ok(val) if val > 1 => Ok(vectorized.span.with(NonZeroU32::new(val).unwrap())),
                 _ => Err(cx.report(errors::InvalidVectorSize { n: vectorized })),
             };
             (&lex.instruction[1..], vectorized, rest)
@@ -23,7 +24,7 @@ impl<'a> Statement<'a> {
         Self::parse_inner(
             cx,
             instruction,
-            vectorized.unwrap_or_else(|span| span.with(NonZeroU16::new(1).unwrap())),
+            vectorized.unwrap_or_else(|span| span.with(NonZeroU32::new(1).unwrap())),
             args,
             lex.comment,
         )
@@ -32,7 +33,7 @@ impl<'a> Statement<'a> {
     fn parse_inner(
         cx: &'a Compiler,
         instruction: &'a str,
-        vectorized: Spanned<'a, NonZeroU16>,
+        vectorized: Spanned<'a, NonZeroU32>,
         args: Spanned<'a, &[Spanned<'a, Operand>]>,
         comment: Span<'a>,
     ) -> Self {
@@ -43,12 +44,11 @@ impl<'a> Statement<'a> {
                 Instruction::Nop
             }
             "" => Instruction::Nop,
-            "ldsi" | "ldi" | "ldint" | "movs" | "movc" | "movint" | "movsint" | "ldsint" => {
-                Instruction::Assign {
-                    destination: args.index_or_err(cx, 0).require(cx),
-                    value: args.index_or_err(cx, 1),
-                }
-            }
+            "ldsi" | "ldi" | "ldint" | "movs" | "movc" | "movint" | "movsint" | "ldsint"
+            | "ldsbit" => Instruction::Assign {
+                destination: args.index_or_err(cx, 0).require(cx),
+                value: args.index_or_err(cx, 1),
+            },
             "ldmc" | "ldms" | "ldmci" | "ldmsi" | "ldmint" | "ldminti" | "ldmsint" | "ldmsinti" => {
                 Instruction::LoadFromMemory {
                     destination: args.index_or_err(cx, 0).require(cx),
@@ -257,7 +257,7 @@ impl<'a> Statement<'a> {
                 arg: args.index_or_err(cx, 0).require(cx),
             },
             "print_reg" | "print_char_regint" | "print_char4_regint" | "print_int"
-            | "print_fix_plain" => Instruction::PrintR {
+            | "print_fix_plain" | "print_ieee_float" => Instruction::PrintR {
                 instruction,
                 arg: args.index_or_err(cx, 0).require(cx),
             },
@@ -364,6 +364,7 @@ impl<'a> Statement<'a> {
 
             "gc" => Instruction::GarbledCircuit(args.index_or_err(cx, 0).require(cx)),
             "lf" => Instruction::LocalFunction(args.index_or_err(cx, 0).require(cx)),
+            "nop" => Instruction::Nop,
             _ => {
                 cx.report(errors::UnknownInstruction {
                     span: args.span,
@@ -531,6 +532,7 @@ impl<'a> Body<'a> {
         // A map converting block ids into the original source order to make sure
         // we can roundtrip asm files. Otherwise we'd be changing block orders by
         // fairly arbitrary rules.
+        trace!(num_blocks = block_starts.len());
         let block_map: HashMap<usize, usize> = block_starts
             .iter()
             .enumerate()
@@ -553,7 +555,11 @@ impl<'a> Body<'a> {
 
         let mut blocks = Vec::new();
         let mut stmts = Vec::new();
-        for (i, lexical) in lexicals.iter().enumerate() {
+        for (i, lexical) in lexicals
+            .iter()
+            .chain(iter::once(&Lexical::nop()))
+            .enumerate()
+        {
             trace!("{}: {}", i, lexical);
             // finalize the current block when we encounter a new one
             if let Some((next_block_id, _)) = block_starts.remove(&i) {

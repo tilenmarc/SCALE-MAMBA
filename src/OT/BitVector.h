@@ -97,9 +97,18 @@ public:
             bytes = new uint8_t[nbytes];*/
       }
   }
-  unsigned int size() const { return nbits; }
-  unsigned int size_bytes() const { return nbytes; }
-  uint8_t *get_ptr() { return bytes; }
+  unsigned int size() const
+  {
+    return nbits;
+  }
+  unsigned int size_bytes() const
+  {
+    return nbytes;
+  }
+  uint8_t *get_ptr()
+  {
+    return bytes;
+  }
 
   BitVector(size_t n= 128)
   {
@@ -130,12 +139,21 @@ public:
     return *this;
   }
 
-  uint8_t get_byte(int i) const { return bytes[i]; }
+  uint8_t get_byte(int i) const
+  {
+    return bytes[i];
+  }
 
-  void set_byte(int i, uint8_t b) { bytes[i]= b; }
+  void set_byte(int i, uint8_t b)
+  {
+    bytes[i]= b;
+  }
 
   // get the i-th 64-bit word
-  word get_word(int i) const { return *(word *) (bytes + i * 8); }
+  word get_word(int i) const
+  {
+    return *(word *) (bytes + i * 8);
+  }
 
   void set_word(int i, word w)
   {
@@ -143,16 +161,22 @@ public:
     memcpy(bytes + offset, (uint8_t *) &w, sizeof(word));
   }
 
-  int128 get_int128(int i) const { return _mm_lddqu_si128((__m128i *) bytes + i); }
-  void set_int128(int i, int128 a) { *((__m128i *) bytes + i)= a.a; }
+  int128 get_int128(int i) const
+  {
+    return _mm_lddqu_si128((__m128i *) bytes + i);
+  }
+  void set_int128(int i, int128 a)
+  {
+    *((__m128i *) bytes + i)= a.a;
+  }
 
   int get_bit(int i) const
   {
     return (bytes[i / 8] >> (i % 8)) & 1;
   }
-  void set_bit(int i, unsigned int a)
+  void set_bit(unsigned long int i, unsigned int a)
   {
-    int j= i / 8, k= i & 7;
+    unsigned long int j= i / 8, k= i & 7;
     if (a == 1)
       {
         bytes[j]|= (uint8_t)(1UL << k);

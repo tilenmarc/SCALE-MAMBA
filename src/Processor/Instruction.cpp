@@ -12,9 +12,11 @@ All rights reserved
 #include "Processor/Processor.h"
 #include "Tools/Crypto.h"
 #include "Tools/parse.h"
+#include "Tools/util_containers.h"
 extern Local_Functions Global_LF;
 
 #include <algorithm>
+#include <limits>
 #include <map>
 #include <mutex>
 #include <sstream>
@@ -196,6 +198,7 @@ void BaseInstruction::parse_operands(istream &s, int pos)
       case PRINT_CHAR_REGINT:
       case PRINT_CHAR4_REGINT:
       case PRINT_INT:
+      case PRINT_IEEE_FLOAT:
         r[0]= get_int(s);
         break;
       // instructions with 2 registers + 1 integer operand
@@ -250,6 +253,7 @@ void BaseInstruction::parse_operands(istream &s, int pos)
       case LDMSINT:
       case STMSINT:
       case LDSINT:
+      case LDSBIT:
         r[0]= get_int(s);
         n= get_int(s);
         break;
@@ -387,6 +391,7 @@ RegType BaseInstruction::get_reg_type() const
       case XORSINTC:
       case INVSINT:
       case MUL2SINT:
+      case OPEN_CHANNEL:
         return INT;
       case XORSB:
       case ANDSB:
@@ -416,7 +421,7 @@ RegType BaseInstruction::get_reg_type() const
       case PRINT_FLOAT:
       case PRINT_FIX:
       case PRINT_INT:
-      case OPEN_CHANNEL:
+      case PRINT_IEEE_FLOAT:
       case CLOSE_CHANNEL:
       case OUTPUT_SHARES:
       case OUTPUT_INT:
@@ -450,7 +455,7 @@ RegType BaseInstruction::get_reg_type() const
  * write, and then take the max register in that
  * instruction it will be OK
  *   
- * So if we hade
+ * So if we had
  *      blah with c0,c1,s0,s1 registers
  *      c5 <- add c0, c1
  *      s3 <- add c5, s1
@@ -872,6 +877,9 @@ ostream &operator<<(ostream &s, const Instruction &instr)
       case PRINT_INT:
         s << "PRINT_INT";
         break;
+      case PRINT_IEEE_FLOAT:
+        s << "PRINT_IEEE_FLOAT";
+        break;
       case RAND:
         s << "RAND";
         break;
@@ -1254,6 +1262,7 @@ ostream &operator<<(ostream &s, const Instruction &instr)
         break;
       // instructions with 1 rint register operands
       case PRINT_INT:
+      case PRINT_IEEE_FLOAT:
       case PRINT_CHAR_REGINT:
       case PRINT_CHAR4_REGINT:
       case PUSHINT:
@@ -1424,49 +1433,63 @@ void Instruction::execute_using_sacrifice_data(
   int thread= Proc.get_thread_num();
   // Check to see if we have to wait
   Wait_For_Preproc(opcode, size, thread, OCD);
-  // Now do the work
-  Proc.increment_PC();
 
   int r[3]= {this->r[0], this->r[1], this->r[2]};
+  list<Share> la, lb, lc;
 
-  for (unsigned int i= 0; i < size; i++)
+  switch (opcode)
     {
-      switch (opcode)
-        {
-          case TRIPLE:
-            OCD.mul_mutex[thread].lock();
-            Proc.get_Sp_ref(r[0])= SacrificeD[thread].TD.ta.front();
-            SacrificeD[thread].TD.ta.pop_front();
-            Proc.get_Sp_ref(r[1])= SacrificeD[thread].TD.tb.front();
-            SacrificeD[thread].TD.tb.pop_front();
-            Proc.get_Sp_ref(r[2])= SacrificeD[thread].TD.tc.front();
-            SacrificeD[thread].TD.tc.pop_front();
-            OCD.mul_mutex[thread].unlock();
-            break;
-          case SQUARE:
-            OCD.sqr_mutex[thread].lock();
-            Proc.get_Sp_ref(r[0])= SacrificeD[thread].SD.sa.front();
-            SacrificeD[thread].SD.sa.pop_front();
-            Proc.get_Sp_ref(r[1])= SacrificeD[thread].SD.sb.front();
-            SacrificeD[thread].SD.sb.pop_front();
-            OCD.sqr_mutex[thread].unlock();
-            break;
-          case BIT:
-            OCD.bit_mutex[thread].lock();
-            Proc.get_Sp_ref(r[0])= SacrificeD[thread].BD.bb.front();
-            SacrificeD[thread].BD.bb.pop_front();
-            OCD.bit_mutex[thread].unlock();
-            break;
-          default:
-            throw bad_value();
-            break;
-        }
-      if (size > 1)
-        {
-          r[0]++;
-          r[1]++;
-          r[2]++;
-        }
+      case TRIPLE:
+        OCD.mul_mutex[thread].lock();
+        Split_Lists(la, SacrificeD[thread].TD.ta, size);
+        Split_Lists(lb, SacrificeD[thread].TD.tb, size);
+        Split_Lists(lc, SacrificeD[thread].TD.tc, size);
+        OCD.mul_mutex[thread].unlock();
+        for (list<Share>::const_iterator zz= la.begin(); zz != la.end(); ++zz)
+          {
+            Proc.get_Sp_ref(r[0])= *zz;
+            r[0]++;
+          }
+        for (list<Share>::const_iterator zz= lb.begin(); zz != lb.end(); ++zz)
+          {
+            Proc.get_Sp_ref(r[1])= *zz;
+            r[1]++;
+          }
+        for (list<Share>::const_iterator zz= lc.begin(); zz != lc.end(); ++zz)
+          {
+            Proc.get_Sp_ref(r[2])= *zz;
+            r[2]++;
+          }
+        break;
+      case SQUARE:
+        OCD.sqr_mutex[thread].lock();
+        Split_Lists(la, SacrificeD[thread].SD.sa, size);
+        Split_Lists(lb, SacrificeD[thread].SD.sb, size);
+        OCD.sqr_mutex[thread].unlock();
+        for (list<Share>::const_iterator zz= la.begin(); zz != la.end(); ++zz)
+          {
+            Proc.get_Sp_ref(r[0])= *zz;
+            r[0]++;
+          }
+        for (list<Share>::const_iterator zz= lb.begin(); zz != lb.end(); ++zz)
+          {
+            Proc.get_Sp_ref(r[1])= *zz;
+            r[1]++;
+          }
+        break;
+      case BIT:
+        OCD.bit_mutex[thread].lock();
+        Split_Lists(lb, SacrificeD[thread].BD.bb, size);
+        OCD.bit_mutex[thread].unlock();
+        for (list<Share>::const_iterator zz= lb.begin(); zz != lb.end(); ++zz)
+          {
+            Proc.get_Sp_ref(r[0])= *zz;
+            r[0]++;
+          }
+        break;
+      default:
+        throw bad_value();
+        break;
     }
 }
 
@@ -1482,17 +1505,21 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
     }
   bool restart= false;
 
-  // First deal with the offline data input routines as these need thread locking
+  Proc.increment_PC();
+
+  int r[3]= {this->r[0], this->r[1], this->r[2]};
+  int n= this->n;
+
+  /* First deal with instructions we want to deal with outside the main 
+   * loop for vectorized instructions
+   */
+
+  // Deal the offline data input routines as these need thread locking
   if (opcode == TRIPLE || opcode == SQUARE || opcode == BIT)
     {
       execute_using_sacrifice_data(Proc, OCD);
       return restart;
     }
-
-  Proc.increment_PC();
-
-  int r[3]= {this->r[0], this->r[1], this->r[2]};
-  int n= this->n;
 
   // Extract daBit
   if (opcode == DABIT)
@@ -1504,6 +1531,40 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
       return restart;
     }
 
+  // Private input/output
+  if (opcode == PRIVATE_OUTPUT || opcode == PRIVATE_INPUT)
+    {
+      if (Proc.get_thread_num() != 0)
+        {
+          throw IO_thread();
+        }
+      if (opcode == PRIVATE_OUTPUT)
+        {
+          Proc.iop.private_output(p, r[0], m, Proc, P, machine, OCD, size);
+        }
+      else
+        {
+          Proc.iop.private_input(p, r[0], m, Proc, P, machine, OCD, size);
+        }
+      return restart;
+    }
+  if (opcode == STARTOPEN)
+    {
+      Proc.POpen_Start(start, size, P);
+      return restart;
+    }
+  if (opcode == STOPOPEN)
+    {
+      Proc.POpen_Stop(start, size, P);
+      return restart;
+    }
+
+  // Need to copy as we might need to alter this in the loop
+  //   But it should not be that big in any case here
+  vector<int> c_start= start;
+
+  // Loop here to cope with vectorization, if an instruction is not vectorizable
+  // then size=1 in any case :-)
   for (unsigned int i= 0; i < size; i++)
     {
       switch (opcode)
@@ -1512,8 +1573,7 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
             Proc.temp.ansp.assign(n);
             Proc.write_Cp(r[0], Proc.temp.ansp);
             break;
-          case LDSI:
-            {
+            case LDSI: {
               Proc.temp.ansp.assign(n);
               Proc.get_Sp_ref(r[0]).assign(Proc.temp.ansp, P.get_mac_keys());
             }
@@ -1751,8 +1811,7 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
             to_gfp(Proc.temp.ansp, Proc.temp.aa);
             Proc.write_Cp(r[0], Proc.temp.ansp);
             break;
-          case DIGESTC:
-            {
+            case DIGESTC: {
               stringstream o;
               to_bigint(Proc.temp.aa, Proc.read_Cp(r[1]));
 
@@ -1951,12 +2010,6 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
             Proc.get_Cp_ref(r[0]).SHR(Proc.read_Cp(r[1]), n);
 #endif
             break;
-          case STARTOPEN:
-            Proc.POpen_Start(start, size, P);
-            return restart;
-          case STOPOPEN:
-            Proc.POpen_Stop(start, size, P);
-            return restart;
           case JMP:
             Proc.relative_jump((signed int) n);
             break;
@@ -1978,7 +2031,14 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
             break;
           case RETURN:
             long ret_pos;
-            Proc.pop_int(ret_pos);
+            if (Proc.stack_int.size() >= 1)
+              {
+                Proc.pop_int(ret_pos);
+              }
+            else
+              {
+                ret_pos= Proc.program_size();
+              }
             Proc.jump(ret_pos);
             break;
           case EQZINT:
@@ -2069,10 +2129,10 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
           case PRINT_FLOAT:
             if (P.whoami() == 0)
               {
-                gfp v= Proc.read_Cp(start[0]);
-                gfp p= Proc.read_Cp(start[1]);
-                gfp z= Proc.read_Cp(start[2]);
-                gfp s= Proc.read_Cp(start[3]);
+                gfp v= Proc.read_Cp(c_start[0]);
+                gfp p= Proc.read_Cp(c_start[1]);
+                gfp z= Proc.read_Cp(c_start[2]);
+                gfp s= Proc.read_Cp(c_start[3]);
                 to_bigint(Proc.temp.aa, v);
                 // MPIR can't handle more precision in exponent
                 to_signed_bigint(Proc.temp.aa2, p, 31);
@@ -2098,6 +2158,37 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
               {
                 stringstream ss;
                 ss << Proc.read_Ri(r[0]);
+                machine.get_IO().debug_output(ss);
+              }
+            break;
+          case PRINT_IEEE_FLOAT:
+            if (P.whoami() == 0)
+              {
+                unsigned long y= Proc.read_Ri(r[0]);
+                // First convert long to bits
+                vector<int> bits(64);
+                for (int index= 0; index < 64; index++)
+                  {
+                    bits[63 - index]= y & 1;
+                    y>>= 1;
+                  }
+                // Now convert bits to double
+                double x;
+                uint8_t *ptr= (uint8_t *) &x;
+                for (int index= 0; index < 8; index++)
+                  {
+                    uint8_t byte= 0;
+                    for (int j= 0; j < 8; j++)
+                      {
+                        byte<<= 1;
+                        byte+= bits[56 + j - index * 8];
+                      }
+                    ptr[index]= byte;
+                  }
+                // Now print the double
+                stringstream ss;
+                ss.precision(numeric_limits<double>::digits10 + 2);
+                ss << x;
                 machine.get_IO().debug_output(ss);
               }
             break;
@@ -2175,9 +2266,9 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
               {
                 throw IO_thread();
               }
-            for (unsigned int i= 0; i < start.size(); i++)
+            for (unsigned int j= 0; j < c_start.size(); j++)
               {
-                machine.get_IO().output_share(Proc.get_Sp_ref(start[i]), p);
+                machine.get_IO().output_share(Proc.get_Sp_ref(c_start[j]), p);
               }
             break;
           case INPUT_SHARES:
@@ -2185,9 +2276,9 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
               {
                 throw IO_thread();
               }
-            for (unsigned int i= 0; i < start.size(); i++)
+            for (unsigned int j= 0; j < c_start.size(); j++)
               {
-                Proc.get_Sp_ref(start[i])= machine.get_IO().input_share(p);
+                Proc.get_Sp_ref(c_start[j])= machine.get_IO().input_share(p);
               }
             break;
           case INPUT_CLEAR:
@@ -2232,20 +2323,6 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
               }
             machine.get_IO().close_channel(n);
             break;
-          case PRIVATE_OUTPUT:
-            if (Proc.get_thread_num() != 0)
-              {
-                throw IO_thread();
-              }
-            Proc.iop.private_output(p, r[0], m, Proc, P, machine, OCD);
-            break;
-          case PRIVATE_INPUT:
-            if (Proc.get_thread_num() != 0)
-              {
-                throw IO_thread();
-              }
-            Proc.iop.private_input(p, r[0], m, Proc, P, machine, OCD);
-            break;
           /* Now we add in the new instructions for sregint and sbit operations */
           case LDMSINT:
             Proc.write_srint(r[0], machine.Msr.read(n, machine.verbose));
@@ -2266,6 +2343,11 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
             break;
           case LDSINT:
             Proc.write_srint(r[0], n);
+            break;
+          case LDSBIT:
+            Proc.temp.aB.assign_zero();
+            Proc.temp.aB.add(n);
+            Proc.write_sbit(r[0], Proc.temp.aB);
             break;
           case ADDSINT:
             Proc.get_srint_ref(r[0]).add(Proc.read_srint(r[1]), Proc.read_srint(r[2]), P, Proc.online_thread_num);
@@ -2289,7 +2371,7 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
             Proc.get_srint_ref(r[0]).mul(Proc.read_srint(r[1]), Proc.read_Ri(r[2]), P, Proc.online_thread_num);
             break;
           case MUL2SINT:
-            mul(Proc.get_srint_ref(start[0]), Proc.get_srint_ref(start[1]), Proc.read_srint(start[2]), Proc.read_srint(start[3]), P, Proc.online_thread_num);
+            mul(Proc.get_srint_ref(c_start[0]), Proc.get_srint_ref(c_start[1]), Proc.read_srint(c_start[2]), Proc.read_srint(c_start[3]), P, Proc.online_thread_num);
             break;
           case DIVSINT:
             Proc.get_srint_ref(r[0]).div(Proc.read_srint(r[1]), Proc.read_srint(r[2]), P, Proc.online_thread_num);
@@ -2331,10 +2413,12 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
             Proc.get_sbit_ref(r[0]).add(Proc.read_sbit(r[1]), Proc.read_sbit(r[2]));
             break;
           case ANDSB:
+            OTD.check();
             Proc.temp.T= OTD.aAD.get_aAND(Proc.online_thread_num);
             Mult_aBit(Proc.get_sbit_ref(r[0]), Proc.read_sbit(r[1]), Proc.read_sbit(r[2]), Proc.temp.T, P);
             break;
           case ORSB:
+            OTD.check();
             Proc.temp.T= OTD.aAD.get_aAND(Proc.online_thread_num);
             Mult_aBit(Proc.temp.aB, Proc.read_sbit(r[1]), Proc.read_sbit(r[2]), Proc.temp.T, P);
             Proc.get_sbit_ref(r[0]).add(Proc.read_sbit(r[1]), Proc.read_sbit(r[2]));
@@ -2392,6 +2476,10 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
           r[0]++;
           r[1]++;
           r[2]++;
+          for (unsigned int j= 0; j < c_start.size(); j++)
+            {
+              c_start[j]++;
+            }
         }
     }
   return restart;
