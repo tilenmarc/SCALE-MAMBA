@@ -20,26 +20,44 @@ void Input_Output_Simple::close_channel(unsigned int channel)
   cout << "Closing channel " << channel << endl;
 }
 
-gfp Input_Output_Simple::private_input_gfp(unsigned int channel)
+gfp Input_Output_Simple::private_input_gfp(unsigned int channel, unsigned int whoimi)
 {
   string line;
-  word x;
 
-  ifstream myfile;
-  string name;
-  name = "Input/data" + std::to_string(channel) + ".txt";
-  myfile.open(name);
-  for (int i = 0; i < counter1; i++) {
-    getline (myfile, line);
+  printf("input %d:\n", counter1);
+
+  if (counter1 == 0) {
+      printf("input:\n");
+
+      ifstream myfile;
+      string name;
+      name = "Input/data" + std::to_string(whoimi) + ".txt";
+
+      int size_of_vector = 0;
+      myfile.open(name);
+      while (std::getline(myfile, line)) {
+          size_of_vector++;
+        }
+      myfile.close();
+      printf("number of inputs %d \n", size_of_vector);
+
+      input_vector = (unsigned long *)malloc(sizeof(unsigned long) * (size_of_vector + 1));
+      myfile.open(name);
+      for (int i = 0; i < size_of_vector; i++) {
+          getline (myfile, line);
+          input_vector[i] = std::stoul(line);
+        }
+      input_vector[size_of_vector] = (unsigned long)NULL;
+      myfile.close();
   }
-  getline (myfile, line);
-//  cout << "counter " << counter1 << "  " << line;
 
-  x = std::stoul(line);
-  myfile.close();
+
+  printf("%d\n", input_vector[counter1]);
+
   gfp y;
-  y.assign(x);
+  y.assign(input_vector[counter1]);
   counter1++;
+  printf("done\n");
   return y;
 }
 
@@ -112,6 +130,34 @@ Share Input_Output_Simple::input_share(unsigned int channel)
 
 void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
 {
+  // create a socket
+
+
+    char finished_msg[] = "fin";
+    send(go_soc , finished_msg , strlen(finished_msg) , 0 );
+
+    while (true) {
+      char buffer[1024] = {0};
+      read(go_soc, buffer, 1024);
+      printf("received msg %s\n", buffer);
+      char restart_msg[] = "restart";
+      send(go_soc , restart_msg , strlen(restart_msg) , 0 );
+      if (buffer[0] == '1') {
+          printf("restart %s\n", buffer);
+          send(go_soc , restart_msg , strlen(restart_msg) , 0 );
+          break;
+        }
+        restart_msg[0] = 'n';
+        send(go_soc , restart_msg , strlen(restart_msg) , 0 );
+        printf("not equal %s\n", buffer);
+
+        sleep(1);
+    }
+
+
+
+
+
     while (true) {
         std::ifstream trigger_file("Input/trigger" + std::to_string(whoimi) + ".txt");
 

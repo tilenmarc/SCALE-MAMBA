@@ -60,7 +60,7 @@ public:
   virtual void close_channel(unsigned int channel)= 0;
 
   // Allow a player to enter a gfp element
-  virtual gfp private_input_gfp(unsigned int channel)= 0;
+  virtual gfp private_input_gfp(unsigned int channel, unsigned int whoami)= 0;
 
   // Allow a player to obtain a private gfp element
   //   - Only known to this player

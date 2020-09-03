@@ -24,6 +24,7 @@ class Input_Output_Simple : public Input_Output_Base
   istream *inpf;
   ostream *outf;
   int counter1 = 0;
+  unsigned long *input_vector;
   bool human; // Only affects share output
 
 public:
@@ -43,7 +44,7 @@ public:
   virtual long open_channel(unsigned int channel);
   virtual void close_channel(unsigned int channel);
 
-  virtual gfp private_input_gfp(unsigned int channel);
+  virtual gfp private_input_gfp(unsigned int channel, unsigned int whoimi);
   virtual void private_output_gfp(const gfp &output, unsigned int channel);
 
   virtual void public_output_gfp(const gfp &output, unsigned int channel);

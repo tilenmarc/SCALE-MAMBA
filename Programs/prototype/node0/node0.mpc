@@ -1,9 +1,9 @@
 def load_data():
-    a1 = Array(1000, sint)
-    a2 = Array(1000, sint)
-    a3 = Array(1000, sint)
-    a = Array(1000, sint)
-    @for_range(1000)
+    a1 = Array(100, sint)
+    a2 = Array(100, sint)
+    a3 = Array(100, sint)
+    a = Array(100, sint)
+    @for_range(100)
     def f(i):
         a1[i] = sint.get_private_input_from(0, 0)
         a2[i] = sint.get_private_input_from(1, 1)
@@ -18,15 +18,17 @@ def output_result(res):
     res.reveal_to(0)
 
 def sum(a):
-    res = Array(1000 + 1, sint)
+    res = Array(100 + 1, sint)
     res[0] = sint(0)
-    @for_range(1000)
+    @for_range(100)
     def f(i):
         res[i+1] = res[i] + a[i]
-    return res[1000]
+    return res[100]
 
 a = load_data()
 s = sum(a)
-output_result(s)
+s_reveal = s.reveal()
+print_ln('got %s', s_reveal)
+# output_result(s)
 
 restart()

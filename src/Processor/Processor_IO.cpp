@@ -27,7 +27,7 @@ void Processor_IO::private_input(unsigned int player, int target, unsigned int c
     {
       for (unsigned int i= 0; i < vectorize; i++)
         {
-          i_epsilon[i]= machine.get_IO().private_input_gfp(channel);
+          i_epsilon[i]= machine.get_IO().private_input_gfp(channel, P.whoami());
         }
     }
 
