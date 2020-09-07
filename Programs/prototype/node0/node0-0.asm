@@ -8,34 +8,34 @@ ldint r2, 8192 # 4
 addint r3, r1, r2 # 5
 stmsi s0, r3 # 6
 private_input s1, 1, 1 # 7
-ldint r4, 8292 # 8
+ldint r4, 8202 # 8
 addint r5, r1, r4 # 9
 stmsi s1, r5 # 10
 private_input s2, 2, 2 # 11
-ldint r6, 8392 # 12
+ldint r6, 8212 # 12
 addint r7, r1, r6 # 13
 stmsi s2, r7 # 14
 ldint r8, 8192 # 15
 addint r9, r1, r8 # 16
 ldmsi s3, r9 # 17
-ldint r10, 8292 # 18
+ldint r10, 8202 # 18
 addint r11, r1, r10 # 19
 ldmsi s4, r11 # 20
 adds s5, s3, s4 # 21
-ldint r12, 8492 # 22
+ldint r12, 8222 # 22
 addint r13, r1, r12 # 23
 stmsi s5, r13 # 24
-ldint r14, 8492 # 25
+ldint r14, 8222 # 25
 addint r15, r1, r14 # 26
 ldmsi s6, r15 # 27
-ldint r16, 8392 # 28
+ldint r16, 8212 # 28
 addint r17, r1, r16 # 29
 ldmsi s7, r17 # 30
 adds s8, s6, s7 # 31
-ldint r18, 8492 # 32
+ldint r18, 8222 # 32
 addint r19, r1, r18 # 33
 stmsi s8, r19 # 34
-ldint r20, 8492 # 35
+ldint r20, 8222 # 35
 addint r21, r1, r20 # 36
 ldmsi s9, r21 # 37
 bit s261 # 38
@@ -1282,52 +1282,45 @@ subsfi s46, s397, 1 # 1278
 mulm s51, s46, c2 # 1279
 submr s52, c1, s12 # 1280
 adds s10, s52, s51 # 1281
-ldint r22, 8492 # 1282
+ldint r22, 8222 # 1282
 addint r23, r1, r22 # 1283
 stmsi s10, r23 # 1284
 ldint r24, 1 # 1285
 addint r25, r1, r24 # 1286
 pushint r25 # 1287
-ldint r26, 100 # 1288
+ldint r26, 10 # 1288
 ltint r27, r25, r26 # 1289
 jmpnz r27, -1289 # 1290
 # node0-0-end-loop-2
 popint r28 # 1291
 ldsi s1167, 0 # 1292
-stms s1167, 8592 # 1293
+stms s1167, 8232 # 1293
 ldint r29, 0 # 1294
 pushint r29 # 1295
 # node0-0-begin-loop-3
 popint r30 # 1296
-ldint r31, 8592 # 1297
+ldint r31, 8232 # 1297
 addint r32, r30, r31 # 1298
 ldmsi s1168, r32 # 1299
-ldint r33, 8492 # 1300
+ldint r33, 8222 # 1300
 addint r34, r30, r33 # 1301
 ldmsi s1169, r34 # 1302
 adds s1170, s1168, s1169 # 1303
 ldint r35, 1 # 1304
 addint r36, r30, r35 # 1305
-ldint r37, 8592 # 1306
+ldint r37, 8232 # 1306
 addint r38, r36, r37 # 1307
 stmsi s1170, r38 # 1308
 ldint r39, 1 # 1309
 addint r40, r30, r39 # 1310
 pushint r40 # 1311
-ldint r41, 100 # 1312
+ldint r41, 10 # 1312
 ltint r42, r40, r41 # 1313
 jmpnz r42, -19 # 1314
 # node0-0-end-loop-4
 popint r43 # 1315
-ldms s1171, 8692 # 1316
-startopen 1, s1171 # 1317
-stopopen 1, c278 # 1318
-print_char 103 # 1319
-print_char 111 # 1320
-print_char 116 # 1321
-print_char 32 # 1322
-print_reg c278 # 1323
-print_char 10 # 1324
-restart  # 1325
-reqbl 105 # 1326
-reqbl 105 # 1327
+ldms s1171, 8242 # 1316
+private_output s1171, 0, 0 # 1317
+restart  # 1318
+reqbl 105 # 1319
+reqbl 105 # 1320

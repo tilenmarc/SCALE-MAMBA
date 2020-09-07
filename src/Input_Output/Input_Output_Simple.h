@@ -25,6 +25,7 @@ class Input_Output_Simple : public Input_Output_Base
   ostream *outf;
   int counter1 = 0;
   unsigned long *input_vector;
+  int go_soc;
   bool human; // Only affects share output
 
 public:

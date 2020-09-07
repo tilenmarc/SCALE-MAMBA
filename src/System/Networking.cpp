@@ -331,3 +331,25 @@ void Close_Connections(int ssocket, vector<vector<vector<int>>> &csocket,
   // Close server socket
   close(ssocket);
 }
+
+int Get_Go_Connection(int port)
+{
+  int server_fd, new_socket;
+  struct sockaddr_in address;
+  int addrlen = sizeof(address);
+
+  server_fd = OpenListener(port, 1);
+  printf("finished open listener\n");
+  address.sin_family = AF_INET;
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_port = htons(port);
+
+  if ((new_socket = accept(server_fd, (struct sockaddr *)&address,
+                           (socklen_t*)&addrlen))<0)
+    {
+      perror("accept");
+      exit(EXIT_FAILURE);
+    }
+
+  return new_socket;
+}

@@ -20,11 +20,11 @@ All rights reserved
  * The actual queues may end up being larger, as we dont want to throw
  * good data away
  */
-#define max_triples_sacrifice 100000
-#define max_squares_sacrifice 100000
-#define max_bits_sacrifice 100000
+#define max_triples_sacrifice 50000
+#define max_squares_sacrifice 50000
+#define max_bits_sacrifice 50000
 // Following is per player 
-#define max_IO_sacrifice 100000
+#define max_IO_sacrifice 50000
 
 /* The amount of amortization in sacrifice and offline (when we do it) */
 #define amortize 512

@@ -7,10 +7,14 @@ All rights reserved
 
 #include "Input_Output_Simple.h"
 #include "Exceptions/Exceptions.h"
+#include "System/Networking.h"
+#include <cstring>
+#include <sys/socket.h>
 #include <unistd.h>
 
 long Input_Output_Simple::open_channel(unsigned int channel)
 {
+  go_soc = Get_Go_Connection((int)channel);
   cout << "Opening channel " << channel << endl;
   return 0;
 }
@@ -24,10 +28,10 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel, unsigned int wh
 {
   string line;
 
-  printf("input %d:\n", counter1);
+//  printf("input %d:\n", counter1);
 
   if (counter1 == 0) {
-      printf("input:\n");
+//      printf("input:\n");
 
       ifstream myfile;
       string name;
@@ -39,7 +43,7 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel, unsigned int wh
           size_of_vector++;
         }
       myfile.close();
-      printf("number of inputs %d \n", size_of_vector);
+//      printf("number of inputs %d \n", size_of_vector);
 
       input_vector = (unsigned long *)malloc(sizeof(unsigned long) * (size_of_vector + 1));
       myfile.open(name);
@@ -52,12 +56,12 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel, unsigned int wh
   }
 
 
-  printf("%d\n", input_vector[counter1]);
+//  printf("%d\n", input_vector[counter1]);
 
   gfp y;
   y.assign(input_vector[counter1]);
   counter1++;
-  printf("done\n");
+//  printf("done\n");
   return y;
 }
 
@@ -130,56 +134,25 @@ Share Input_Output_Simple::input_share(unsigned int channel)
 
 void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
 {
-  // create a socket
+  // if I got to here, it means that computations have finished
+  // send finished msg
+  char finished_msg[] = "fin";
+  send(go_soc , finished_msg , strlen(finished_msg) , 0 );
 
+  // wait for a new request
+  while (true) {
+    char buffer[1024] = {0};
+    read(go_soc, buffer, 1024);
 
-    char finished_msg[] = "fin";
-    send(go_soc , finished_msg , strlen(finished_msg) , 0 );
-
-    while (true) {
-      char buffer[1024] = {0};
-      read(go_soc, buffer, 1024);
-      printf("received msg %s\n", buffer);
-      char restart_msg[] = "restart";
-      send(go_soc , restart_msg , strlen(restart_msg) , 0 );
-      if (buffer[0] == '1') {
-          printf("restart %s\n", buffer);
-          send(go_soc , restart_msg , strlen(restart_msg) , 0 );
-          break;
-        }
-        restart_msg[0] = 'n';
+    if (buffer[0] == '1') {
+        printf("received restart request: %s\n", buffer);
+        char restart_msg[] = "restart";
         send(go_soc , restart_msg , strlen(restart_msg) , 0 );
-        printf("not equal %s\n", buffer);
-
-        sleep(1);
+        break;
     }
-
-
-
-
-
-    while (true) {
-        std::ifstream trigger_file("Input/trigger" + std::to_string(whoimi) + ".txt");
-
-        if (trigger_file.is_open())
-        {
-            std::string line;
-            std::getline(trigger_file, line);
-//            std::cout << line << whoimi << "\n";
-            if (line == "restart") {
-                trigger_file.clear();
-
-                ofstream new_trigger_file;
-                new_trigger_file.open ("Input/trigger" + std::to_string(whoimi) + ".txt");
-                new_trigger_file << "wait\n";
-                new_trigger_file.close();
-                break;
-            }
-            trigger_file.clear();
-        }
-        usleep(100000);
-    }
-
+    printf("received strange message, no restart: %s\n", buffer);
+    sleep(1);
+  }
 
   // Load new schedule file program streams, using the original
   // program name
@@ -188,6 +161,7 @@ void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
   // programs you want to run are, by directly editing the
   // public variables in the schedule object.
   counter1 = 0;
+  free(input_vector);
   unsigned int nthreads= schedule.Load_Programs();
   if (schedule.max_n_threads() < nthreads)
     {
