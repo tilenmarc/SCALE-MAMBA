@@ -1,0 +1,84 @@
+# # todo: adapt based on the decision on the number of bits of mantissa and exp
+# def float_to_ints(fl):
+#     return [fl.v, fl.p, fl.s, fl.z]
+#
+# def ints_to_float(ints):
+#     fl = sfloat(0)
+#     fl.v, fl.p, fl.s, fl.z = ints[0], ints[1], ints[2], ints[3]
+#     return fl
+#
+# def load_float():
+#     ret = sfloat(0)
+#     v = Array(3, sint)
+#     p = Array(3, sint)
+#     s = Array(3, sint)
+#     z = Array(3, sint)
+#
+#     v[0] = sint.get_private_input_from(0, 0)
+#     p[0] = sint.get_private_input_from(0, 0)
+#     s[0] = sint.get_private_input_from(0, 0)
+#     z[0] = sint.get_private_input_from(0, 0)
+#
+#     v[1] = sint.get_private_input_from(1, 1)
+#     p[1] = sint.get_private_input_from(1, 1)
+#     s[1] = sint.get_private_input_from(1, 1)
+#     z[1] = sint.get_private_input_from(1, 1)
+#
+#     v[2] = sint.get_private_input_from(2, 2)
+#     p[2] = sint.get_private_input_from(2, 2)
+#     s[2] = sint.get_private_input_from(2, 2)
+#     z[2] = sint.get_private_input_from(2, 2)
+#
+#     ret.v = (v[0] + v[1] + v[2]) % 2**32
+#     ret.p = (p[0] + p[1] + p[2]) % 2**8
+#     ret.p = ret.p - ((ret.p >> 7) * 2**8)
+#
+#     ret.s = (s[0] + s[1] + s[2]) % 2**32
+#     ret.z = (z[0] + z[1] + z[2]) % 2**32
+#     # print_ln('float ints %s %s %s %s', ret.v.reveal(), ret.p.reveal(), ret.s.reveal(), ret.z.reveal())
+#
+#     return ret
+#
+# def load_floats_vec():
+#     a = sint.Matrix(LEN / 4, 4)
+#     @for_range(LEN / 4)
+#     def f(i):
+#         fl = load_float()
+#         a[i][0], a[i][1], a[i][2], a[i][3] = fl.v, fl.p, fl.s, fl.z
+#     return a
+#
+#
+# a = load_floats_vec()
+# @for_range(LEN / 4)
+# def f(i):
+#     print_ln('float %s', ints_to_float(a[i]).reveal())
+
+
+
+def output_result(res):
+    res.reveal_to(0)
+
+
+from Compiler import ml_simple
+
+in_dim, hid_dim, out_dim = 2, 4, 2
+nn = ml_simple.NeuralNetwork(in_dim, hid_dim, out_dim)
+x = sfix.Array(in_dim)
+x[0] = sfix(1)
+x[1] = sfix(5)
+y = sfix.Array(out_dim)
+y[0] = sfix(1)
+y[1] = sfix(0)
+
+out = nn.forward(x)
+print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
+
+grad = nn.gradient_descent(x, y, 100)
+
+out = nn.forward(x)
+print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
+
+#leave this
+s = sint(2)
+output_result(s)
+restart()

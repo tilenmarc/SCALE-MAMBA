@@ -1545,3 +1545,11 @@ def BitDecFull(a):
        abits[i] = (1-czero)*h[i]+czero*bbits[i]
     return abits
 
+def break_point(name=''):
+    """
+    Insert break point. This makes sure that all following code
+    will be executed after preceding code.
+
+    :param name: Name for identification (optional)
+    """
+    get_tape().start_new_basicblock(name=name)

@@ -1,0 +1,66 @@
+def output_result(res):
+    res.reveal_to(0)
+
+
+from Compiler import ml_simple
+
+in_dim, hid_dim, out_dim = 2, 4, 2
+nn = ml_simple.NeuralNetwork(in_dim, hid_dim, out_dim)
+x = sfix.Array(in_dim)
+x[0] = sfix(1)
+x[1] = sfix(5)
+y = sfix.Array(out_dim)
+y[0] = sfix(1)
+y[1] = sfix(0)
+
+out = nn.forward(x)
+print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
+
+grad = nn.gradient_descent(x, y, 100)
+
+out = nn.forward(x)
+print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
+
+#leave this
+s = sint(2)
+output_result(s)
+restart()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# b = ml.relu(a)
+# print_ln('result here %s', b.reveal())
+#
+# # sgd = ml.SGD([ml.Dense(2, 1, 1),
+# #               ml.Output(2, approx=False)], 2,
+# #              report_loss=True)
+# sgd = ml.SGD([ml.Output(2, approx=False)], 2,
+#              report_loss=True)
+#
+# sgd.layers[0].X[0] = sfix(3)
+# sgd.layers[0].X[1] = sfix(2)
+#
+# sgd.layers[0].Y[0] = sfix(0)
+# sgd.layers[0].Y[1] = sfix(1)
+#
+# sgd.reset()
+# sgd.layers[0].forward(batch=[0,1])
+# res1 = sgd.layers[0].eval(2)
+# print_ln('result here2 %s %s', res1[0].reveal(), res1[1].reveal())
+
+# sgd.run()
