@@ -6,34 +6,47 @@ from Compiler import ml_simple
 
 in_dim, hid_dim, out_dim = 2, 4, 2
 nn = ml_simple.NeuralNetwork(in_dim, hid_dim, out_dim)
-x = sfix.Array(in_dim)
-x[0] = sfix(1)
-x[1] = sfix(5)
-y = sfix.Array(out_dim)
-y[0] = sfix(1)
-y[1] = sfix(0)
 
-out = nn.forward(x)
+X = sfix.Matrix(2, in_dim)
+X[0][0] = sfix(1)
+X[0][1] = sfix(0)
+
+X[1][0] = sfix(0.5)
+X[1][1] = sfix(-0.3)
+
+Y = sfix.Matrix(2, out_dim)
+Y[0][0] = sfix(1)
+Y[0][1] = sfix(0)
+
+Y[1][0] = sfix(0)
+Y[1][1] = sfix(1)
+
+
+print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
+
+out = nn.forward(X[0])
 print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
 
-grad = nn.gradient_descent(x, y, 100)
+grad = nn.gradient_descent(X, Y, 10)
 
-out = nn.forward(x)
+print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
+
+
+out = nn.forward(X[0])
 print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
 
-#leave this
-s = sint(2)
-output_result(s)
-restart()
+
+a = MemValue(sfix(1))
+b = sfix(1)
+for i in range(10):
+    a.write(a.read() + b)
+print_ln('after %s', a.read().reveal())
 
 
+a = sfix.Array(10)
 
-
-
-
-
-
-
+a = sfix(2)
+print_ln('after gradient %s %s %s', a.v.reveal(), a.f, a.k)
 
 
 

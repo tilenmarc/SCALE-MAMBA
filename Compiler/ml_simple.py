@@ -19,12 +19,28 @@ def random_matrix(dim1, dim2, r):
         @for_range(dim2)
         def g(j):
             W[i][j] = sfix.get_random(-r, r)
+
+    return W
+
+def eye_matrix(dim1, dim2):
+    W = sfix.Matrix(dim1, dim2)
+    @for_range(dim1)
+    def f(i):
+        @for_range(dim2)
+        def g(j):
+            if_then(i == j)
+            W[i][j] = sfix(1)
+            else_then()
+            W[i][j] = sfix(0)
+            end_if()
+
     return W
 
 def matrix_mul(M1, M2):
     rows = len(M1)
     cols = len(M2[0])
     mid = len(M2)
+    # print_ln('"row, cols %s %s', rows, cols)
     W = sfix.Matrix(rows, cols)
     @for_range(rows)
     def f(i):
@@ -35,6 +51,17 @@ def matrix_mul(M1, M2):
             def h(k):
                 W[i][j] = W[i][j] + (M1[i][k] * M2[k][j])
 
+    return W
+
+def scalar_mul_matrix(s, M):
+    rows = len(M)
+    cols = len(M[0])
+    W = sfix.Matrix(rows, cols)
+    @for_range(rows)
+    def f(i):
+        @for_range(cols)
+        def g(j):
+            W[i][j] = s * M[i][j]
     return W
 
 def matrix_add(M1, M2):
@@ -72,23 +99,56 @@ def matrix_transpose(M):
             W[i][j] = M[j][i]
     return W
 
+def matrix_print(M):
+    rows = len(M)
+    cols = len(M[0])
+    print_ln('matrix')
+    @for_range(rows)
+    def f(i):
+        @for_range(cols)
+        def g(j):
+            print_ln('%s', M[i][j].reveal())
+
+def vector_print(v):
+    rows = len(v)
+    print_ln('vector')
+    @for_range(rows)
+    def f(i):
+        print_ln('%s', v[i].reveal())
+
 def vec_to_matrix(v):
     rows = 1
     cols = len(v)
-    W = sfix.Matrix(cols, rows)
+    W = sfix.Matrix(rows, cols)
     @for_range(cols)
     def f(i):
         W[0][i] = v[i]
     return W
 
-# def vectorizesfix(funct):
+def norm_vec(v):
+    norm = MemValue(sfix(0))
+    @for_range(len(v))
+    def g(i):
+        norm.write(norm.read() + v[i] * v[i])
+    return norm.read()
 
+def vectorize_sfix(funct, x):
+    n = len(x)
+    ret = sfix.Array(n)
+    @for_range(n)
+    def f(i):
+        ret[i] = funct(x[i])
+        # print_ln('vectorize %s', ret[i].reveal())
+
+    return ret
 
 class NeuralNetwork:
     def __init__(self, in_dim, hid_dim, out_dim):
         # np.random.seed(10) # for generating the same results
-        self.W1 = random_matrix(hid_dim, in_dim, 10)
-        self.W2 = random_matrix(out_dim, hid_dim, 10)
+        self.W1 = random_matrix(hid_dim, in_dim, 1.0 / hid_dim)
+        # self.W1 = eye_matrix(hid_dim, in_dim)
+        self.W2 = random_matrix(out_dim, hid_dim, 1.0 / hid_dim)
+        # self.W2 = eye_matrix(out_dim, hid_dim)
         self.x = None
         self.W1x = None
         self.x_1 = None
@@ -96,61 +156,104 @@ class NeuralNetwork:
         self.x_2 = None
 
     def forward(self, x):
+        # vector_print(x)
         self.x = x
         self.W1x = matrix_mul_vec(self.W1, x)
-        self.x_1 = sigmoid_vec(self.W1x)
+        # self.x_1 = vectorize_sfix(relu, self.W1x)
+        self.x_1 = vectorize_sfix(sigmoid, self.W1x)
         self.W2x_1 = matrix_mul_vec(self.W2, self.x_1)
-        self.x_2 = sigmoid_vec(self.W2x_1)
-
+        # self.x_2 = vectorize_sfix(approx_sigmoid, self.W2x_1)
+        self.x_2 = vectorize_sfix(sigmoid, self.W2x_1)
+        # vector_print(self.x_2)
         return self.x_2
 
 
-    def gradient_descent(self, x, y, iterations):
-        @for_range(iterations)
-        def f(i):
+    def lse(self, X, Y):
+        lse = MemValue(sfix(0))
+        @for_range(len(X))
+        def g(i):
+            x = X[i]
+            y = Y[i]
             self.forward(x)
-            # gradients for hidden to output weights
-            mu2 = mul_vec(minus_vec(y, self.x_2), sigmoid_prime_vec(self.W2x_1))
-            g2 = matrix_mul(matrix_transpose(vec_to_matrix(mu2)), vec_to_matrix(self.x_1))
+            dif = minus_vec(y, self.x_2)
+            lse.write(lse.read() + norm_vec(dif))
+        return lse.read()
 
-            mu1a = sigmoid_prime_vec(self.W1x)
-            mu1b = matrix_mul_vec(matrix_transpose(self.W2), mu2)
-            mu1 = mul_vec(mu1a, mu1b)
-
-            g1 = matrix_mul(matrix_transpose(vec_to_matrix(mu1)), vec_to_matrix(self.x))
-
-            self.W2 = matrix_add(self.W2, g2)
-            self.W1 = matrix_add(self.W1, g1)
+    def gradient_descent(self, X, Y, iterations):
+        W1 = [[MemValue(self.W1[i][j]) for j in range(len(self.W1[0]))] for i in range(len(self.W1))]
+        W2 = [[MemValue(self.W2[i][j]) for j in range(len(self.W2[0]))] for i in range(len(self.W2))]
 
 
-#     def gradient_descent(self, x, y, iterations):
-#         for i in range(iterations):
-#             Xi = x
-#             Xj = self.sigmoid(Xi, self.wij)
-#             yhat = self.sigmoid(Xj, self.wjk)
-#             # gradients for hidden to output weights
-#             g_wjk = np.dot(Xj.T, (y - yhat) * self.sigmoid_derivative(Xj, self.wjk))
-#             # gradients for input to hidden weights
-#             g_wij = np.dot(Xi.T, np.dot((y - yhat) * self.sigmoid_derivative(Xj, self.wjk), self.wjk.T) * self.sigmoid_derivative(Xi, self.wij))
-#             # update weights
-#             self.wij += g_wij
-#             self.wjk += g_wjk
-#         print('The final prediction from neural network are: ')
-#         print(yhat)
-#
-# if __name__ == '__main__':
-# neural_network = NeuralNetwork()
-# print('Random starting input to hidden weights: ')
-# print(neural_network.wij)
-# print('Random starting hidden to output weights: ')
-# print(neural_network.wjk)
-# X = np.array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
-# y = np.array([[0, 1, 1, 0]]).T
-# neural_network.gradient_descent(X, y, 10000)
+        @for_range(iterations)
+        def f(j):
+            loss = self.lse(X, Y)
+            print_ln('loss %s', loss.reveal())
+
+
+            # print_ln('w2')
+            # matrix_print(self.W2)
+            # print_ln('w1')
+            # matrix_print(self.W1)
 
 
 
+            G1 = [[MemValue(sfix(0)) for j in range(len(self.W1[0]))] for i in range(len(self.W1))]
+            G2 = [[MemValue(sfix(0)) for j in range(len(self.W2[0]))] for i in range(len(self.W2))]
 
+            @for_range(len(X))
+            def g(i):
+                x = X[i]
+                y = Y[i]
+
+                # print_ln('W %s %s %s %s', self.W1[0][0].reveal(), self.W1[0][1].reveal(), self.W1[1][0].reveal(), self.W1[1][1].reveal())
+
+
+                self.forward(x)
+                # gradients for hidden to output weights
+                # mu2 = mul_vec(minus_vec(y, self.x_2), vectorize_sfix(approx_sigmoid_prime, self.W2x_1))
+                mu2 = mul_vec(minus_vec(y, self.x_2), vectorize_sfix(sigmoid_prime, self.W2x_1))
+                g2 = matrix_mul(matrix_transpose(vec_to_matrix(mu2)), vec_to_matrix(self.x_1))
+
+                # print_ln('w1x %s %s', self.W1x[0].reveal(), self.W1x[1].reveal())
+
+
+                # mu1a = vectorize_sfix(relu_prime, self.W1x)
+                mu1a = vectorize_sfix(sigmoid_prime, self.W1x)
+                # print_ln('mu1a %s %s', mu1a[0].reveal(), mu1a[1].reveal())
+                mu1b = matrix_mul_vec(matrix_transpose(self.W2), mu2)
+                # print_ln('mu1b %s %s', mu1b[0].reveal(), mu1b[1].reveal())
+                mu1 = mul_vec(mu1a, mu1b)
+                # print_ln('mu %s %s', mu1[0].reveal(), mu1[1].reveal())
+
+
+                g1 = matrix_mul(matrix_transpose(vec_to_matrix(mu1)), vec_to_matrix(self.x))
+                # print_ln('g2')
+                # matrix_print(g2)
+                # print_ln('g1')
+                # matrix_print(g1)
+
+                # print_ln('g2 %s %s %s %s', g2[0][0].reveal(), g2[0][1].reveal(), g2[1][0].reveal(), g2[1][1].reveal())
+                # print_ln('g1 %s %s %s %s', g1[0][0].reveal(), g1[0][1].reveal(), g1[1][0].reveal(), g1[1][1].reveal())
+
+
+
+                for l in range(len(self.W1[0])):
+                    for k in range(len(self.W1)):
+                        G1[k][l].write(G1[k][l].read() + g1[k][l])
+
+                for l in range(len(self.W2[0])):
+                    for k in range(len(self.W2)):
+                        G2[k][l].write(G2[k][l].read() + g2[k][l])
+
+            for l in range(len(self.W1[0])):
+                for k in range(len(self.W1)):
+                    W1[k][l].write(W1[k][l].read() + G1[k][l].read() / len(X))
+                    self.W1[k][l] = W1[k][l].read()
+
+            for l in range(len(self.W2[0])):
+                for k in range(len(self.W2)):
+                    W2[k][l].write(W2[k][l].read() + G2[k][l].read() / len(X))
+                    self.W2[k][l] = W2[k][l].read()
 
 def log_e(x):
     return mpc_math.log_fx(x, math.e)
@@ -216,8 +319,11 @@ def sigmoid_prime_vec(x):
         ret[i] = sigmoid_prime(x[i])
     return ret
 
+def approx_sigmoid_prime(x, n=5):
+    sx = approx_sigmoid(x, n)
+    return sx * (1 - sx)
 
-def approx_sigmoid(x, n=3):
+def approx_sigmoid(x, n=5):
     """ Piece-wise approximate sigmoid as in
     `Dahl et al. <https://arxiv.org/abs/1810.08130>`_
 
@@ -253,7 +359,8 @@ def approx_lse_0(x, n=3):
 
 def relu_prime(x):
     """ ReLU derivative. """
-    return (0 <= x)
+
+    return (0 <= x).if_else(sfix(1), sfix(0))
 
 def relu(x):
     """ ReLU function (maximum of input and zero). """

@@ -1,0 +1,84 @@
+from Compiler import ml_simple
+
+def output_result(res):
+    res.reveal_to(0)
+
+def load_fix():
+    v0 = sint.get_private_input_from(0, 0)
+    v1 = sint.get_private_input_from(1, 1)
+    v2 = sint.get_private_input_from(2, 2)
+
+    v = ((v0 + v1 + v2) % 2**41)
+    v = v - ((v >> 40) * 2**41)
+    fx = sfix(0)
+    fx.v = v
+
+    return fx
+
+def load_fix_array():
+    a = sfix.Array(LEN)
+    @for_range(LEN)
+    def f(i):
+        a[i] = load_fix()
+    return a
+
+def load_input_output():
+    a = load_fix_array()
+    X = sfix.Matrix(LEN / (IN_DIM + OUT_DIM), IN_DIM)
+    Y = sfix.Matrix(LEN / (IN_DIM + OUT_DIM), OUT_DIM)
+
+    @for_range(LEN / (IN_DIM + OUT_DIM))
+    def f(i):
+        @for_range(IN_DIM + OUT_DIM)
+        def g(j):
+            if_then(j < IN_DIM)
+            X[i][j] = a[i * (IN_DIM + OUT_DIM) + j]
+            else_then()
+            Y[i][j - IN_DIM] = a[i * (IN_DIM + OUT_DIM) + j]
+            end_if()
+
+    return X, Y
+
+
+
+
+
+X, Y = load_input_output()
+
+# @for_range(LEN / (IN_DIM + OUT_DIM))
+# def f(i):
+#     @for_range(IN_DIM)
+#     def g(j):
+#         print_ln('in %s', X[i][j].reveal())
+#
+#
+# @for_range(LEN / (IN_DIM + OUT_DIM))
+# def f(i):
+#     @for_range(OUT_DIM)
+#     def g(j):
+#         print_ln('out %s', Y[i][j].reveal())
+
+
+nn = ml_simple.NeuralNetwork(IN_DIM, HID_DIM, OUT_DIM)
+
+print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
+
+out = nn.forward(X[0])
+print_ln('before gradient %s', out[0].reveal())
+out = nn.forward(X[3])
+print_ln('before gradient %s', out[0].reveal())
+
+grad = nn.gradient_descent(X, Y, 10)
+
+# print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
+out = nn.forward(X[0])
+print_ln('before gradient %s', out[0].reveal())
+out = nn.forward(X[3])
+print_ln('after gradient %s', out[0].reveal())
+
+
+#leave this
+s = sint(2)
+output_result(s)
+restart()
+
