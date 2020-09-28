@@ -1,18 +1,16 @@
-def output_result(res):
-    res.reveal_to(0)
+from Compiler import nn
 
-
-from Compiler import ml_simple
-
-in_dim, hid_dim, out_dim = 2, 4, 2
-nn = ml_simple.NeuralNetwork(in_dim, hid_dim, out_dim)
+in_dim, hid_dim, out_dim = 3, 4, 2
+network = nn.NeuralNetwork([nn.DenseLayer(in_dim, out_dim), nn.ActivationLayer("sigmoid")])
 
 X = sfix.Matrix(2, in_dim)
 X[0][0] = sfix(1)
 X[0][1] = sfix(0)
+X[0][2] = sfix(3)
 
 X[1][0] = sfix(0.5)
 X[1][1] = sfix(-0.3)
+X[1][2] = sfix(-0.5)
 
 Y = sfix.Matrix(2, out_dim)
 Y[0][0] = sfix(1)
@@ -21,35 +19,66 @@ Y[0][1] = sfix(0)
 Y[1][0] = sfix(0)
 Y[1][1] = sfix(1)
 
-
-print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
-
-out = nn.forward(X[0])
+out = network.forward(X[0])
 print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
 
-grad = nn.gradient_descent(X, Y, 10)
-
-print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
-
-
-out = nn.forward(X[0])
-print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
+network.layers
+opt = nn.Optimizer(network, X, Y)
+opt.run(2)
 
 
-a = MemValue(sfix(1))
-b = sfix(1)
-for i in range(10):
-    a.write(a.read() + b)
-print_ln('after %s', a.read().reveal())
-
-
-a = sfix.Array(10)
-
-a = sfix(2)
-print_ln('after gradient %s %s %s', a.v.reveal(), a.f, a.k)
-
-
-
+# def output_result(res):
+#     res.reveal_to(0)
+#
+#
+# from Compiler import ml_simple
+#
+# in_dim, hid_dim, out_dim = 2, 4, 2
+# nn = ml_simple.NeuralNetwork(in_dim, hid_dim, out_dim)
+#
+# X = sfix.Matrix(2, in_dim)
+# X[0][0] = sfix(1)
+# X[0][1] = sfix(0)
+#
+# X[1][0] = sfix(0.5)
+# X[1][1] = sfix(-0.3)
+#
+# Y = sfix.Matrix(2, out_dim)
+# Y[0][0] = sfix(1)
+# Y[0][1] = sfix(0)
+#
+# Y[1][0] = sfix(0)
+# Y[1][1] = sfix(1)
+#
+#
+# print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
+#
+# out = nn.forward(X[0])
+# print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
+#
+# grad = nn.gradient_descent(X, Y, 10)
+#
+# print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
+#
+#
+# out = nn.forward(X[0])
+# print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
+#
+#
+# a = MemValue(sfix(1))
+# b = sfix(1)
+# for i in range(10):
+#     a.write(a.read() + b)
+# print_ln('after %s', a.read().reveal())
+#
+#
+# a = sfix.Array(10)
+#
+# a = sfix(2)
+# print_ln('after gradient %s %s %s', a.v.reveal(), a.f, a.k)
+#
+#
+#
 
 
 
