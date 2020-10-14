@@ -1,4 +1,4 @@
-from Compiler import ml_simple
+from Compiler import nn
 
 def output_result(res):
     res.reveal_to(0)
@@ -39,11 +39,25 @@ def load_input_output():
 
     return X, Y
 
-
-
+def normalize(X):
+    max_vals = sfix.Array(IN_DIM)
+    @for_range(IN_DIM)
+    def f(i):
+        max_vals[i] = sfix(0)
+    @for_range(LEN / (IN_DIM + OUT_DIM))
+    def f(i):
+        @for_range(IN_DIM)
+        def g(j):
+            max_vals[j] = (X[i][j] > max_vals[j]).if_else(X[i][j], max_vals[j])
+    @for_range(LEN / (IN_DIM + OUT_DIM))
+    def f(i):
+        @for_range(IN_DIM)
+        def g(j):
+            X[i][j] = (sfix(0) < max_vals[j]).if_else(X[i][j] / max_vals[j], X[i][j])
 
 
 X, Y = load_input_output()
+normalize(X)
 
 # @for_range(LEN / (IN_DIM + OUT_DIM))
 # def f(i):
@@ -59,22 +73,26 @@ X, Y = load_input_output()
 #         print_ln('out %s', Y[i][j].reveal())
 
 
-nn = ml_simple.NeuralNetwork(IN_DIM, HID_DIM, OUT_DIM)
+# network = nn.NeuralNetwork([nn.DenseLayer(IN_DIM, HID_DIM), nn.ActivationLayer("approx_sigmoid"), nn.DenseLayer(HID_DIM, OUT_DIM), nn.ActivationLayer("approx_sigmoid")])
+network = nn.NeuralNetwork([nn.DenseLayer(IN_DIM, OUT_DIM), nn.ActivationLayer("approx_sigmoid")])
 
-print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
+print_ln('one line %s %s %s %s %s', X[0][0].reveal(),X[0][1].reveal(),X[0][2].reveal(),X[0][3].reveal(),X[0][4].reveal())
+print_ln('W %s %s %s %s %s', network.layers[0].W[0][0].reveal(),network.layers[0].W[0][1].reveal(),network.layers[0].W[0][2].reveal(),network.layers[0].W[0][3].reveal(),network.layers[0].W[0][4].reveal())
 
-out = nn.forward(X[0])
-print_ln('before gradient %s', out[0].reveal())
-out = nn.forward(X[3])
-print_ln('before gradient %s', out[0].reveal())
+out = network.forward(X[0])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+print_ln('num batches %s', len(X))
 
-grad = nn.gradient_descent(X, Y, 10)
+opt = nn.Optimizer(network, X, Y)
+epochs, batch_size, learning_rate = 30, 5, 1
+opt.run(epochs, batch_size, learning_rate, "grad")
 
-# print_ln('W %s %s %s %s', nn.W1[0][0].reveal(), nn.W1[0][1].reveal(), nn.W1[1][0].reveal(), nn.W1[1][1].reveal())
-out = nn.forward(X[0])
-print_ln('before gradient %s', out[0].reveal())
-out = nn.forward(X[3])
-print_ln('after gradient %s', out[0].reveal())
+out = network.forward(X[0])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
 
 
 #leave this

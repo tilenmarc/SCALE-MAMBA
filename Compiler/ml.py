@@ -1307,46 +1307,46 @@ class Optimizer:
             return res
         print_ln('finished after %s epochs and %s iterations', i, n_iterations)
 
-# class Adam(Optimizer):
-#     def __init__(self, layers, n_epochs):
-#         self.alpha = .001
-#         self.beta1 = 0.9
-#         self.beta2 = 0.999
-#         self.epsilon = 10 ** -8
-#         self.n_epochs = n_epochs
-#
-#         self.layers = layers
-#         self.ms = []
-#         self.vs = []
-#         self.gs = []
-#         self.thetas = []
-#         for layer in layers:
-#             for nabla in layer.nablas():
-#                 self.gs.append(nabla)
-#                 for x in self.ms, self.vs:
-#                     x.append(nabla.same_shape())
-#             for theta in layer.thetas():
-#                 self.thetas.append(theta)
-#
-#         self.mhat_factors = Array(n_epochs, sfix)
-#         self.vhat_factors = Array(n_epochs, sfix)
-#
-#         for i in range(n_epochs):
-#             for factors, beta in ((self.mhat_factors, self.beta1),
-#                                   (self.vhat_factors, self.beta2)):
-#                 factors[i] = 1. / (1 - beta ** (i + 1))
-#
-#     def update(self, i_epoch):
-#         for m, v, g, theta in zip(self.ms, self.vs, self.gs, self.thetas):
-#             @for_range_opt(len(m))
-#             def _(k):
-#                 m[k] = self.beta1 * m[k] + (1 - self.beta1) * g[k]
-#                 v[k] = self.beta2 * v[k] + (1 - self.beta2) * g[k] ** 2
-#                 mhat = m[k] * self.mhat_factors[i_epoch]
-#                 vhat = v[k] * self.vhat_factors[i_epoch]
-#                 theta[k] = theta[k] - self.alpha * mhat / \
-#                            mpc_math.sqrt(vhat) + self.epsilon
-#
+class Adam(Optimizer):
+    def __init__(self, layers, n_epochs):
+        self.alpha = .001
+        self.beta1 = 0.9
+        self.beta2 = 0.999
+        self.epsilon = 10 ** -8
+        self.n_epochs = n_epochs
+
+        self.layers = layers
+        self.ms = []
+        self.vs = []
+        self.gs = []
+        self.thetas = []
+        for layer in layers:
+            for nabla in layer.nablas():
+                self.gs.append(nabla)
+                for x in self.ms, self.vs:
+                    x.append(nabla.same_shape())
+            for theta in layer.thetas():
+                self.thetas.append(theta)
+
+        self.mhat_factors = Array(n_epochs, sfix)
+        self.vhat_factors = Array(n_epochs, sfix)
+
+        for i in range(n_epochs):
+            for factors, beta in ((self.mhat_factors, self.beta1),
+                                  (self.vhat_factors, self.beta2)):
+                factors[i] = 1. / (1 - beta ** (i + 1))
+
+    def update(self, i_epoch):
+        for m, v, g, theta in zip(self.ms, self.vs, self.gs, self.thetas):
+            @for_range_opt(len(m))
+            def _(k):
+                m[k] = self.beta1 * m[k] + (1 - self.beta1) * g[k]
+                v[k] = self.beta2 * v[k] + (1 - self.beta2) * g[k] ** 2
+                mhat = m[k] * self.mhat_factors[i_epoch]
+                vhat = v[k] * self.vhat_factors[i_epoch]
+                theta[k] = theta[k] - self.alpha * mhat / \
+                           mpc_math.sqrt(vhat) + self.epsilon
+
 class SGD(Optimizer):
     """ Stochastic gradient descent.
 

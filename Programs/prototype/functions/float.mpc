@@ -105,36 +105,57 @@ def output_result(res):
 from Compiler import nn
 
 in_dim, hid_dim, out_dim = 3, 4, 2
-network = nn.NeuralNetwork([nn.DenseLayer(in_dim, hid_dim), nn.DenseLayer(hid_dim, out_dim), nn.ActivationLayer("sigmoid")])
+# network = nn.NeuralNetwork([nn.DenseLayer(1,1), nn.ActivationLayer("approx_sigmoid"), nn.DenseLayer(1,1), nn.ActivationLayer("approx_sigmoid")])
+# network = nn.NeuralNetwork([nn.DenseLayer(in_dim, hid_dim), nn.ActivationLayer("relu"), nn.DenseLayer(hid_dim, out_dim), nn.ActivationLayer("approx_sigmoid")])
+network = nn.NeuralNetwork([nn.DenseLayer(1, 1), nn.ActivationLayer("approx_sigmoid")])
 
-X = sfix.Matrix(2, in_dim)
+X = sfix.Matrix(1, 1)
 X[0][0] = sfix(1)
-X[0][1] = sfix(0)
-X[0][2] = sfix(3)
+# X[0][1] = sfix(0)
+# X[0][2] = sfix(3)
 
-X[1][0] = sfix(0.5)
-X[1][1] = sfix(-0.3)
-X[1][2] = sfix(-0.5)
+# X[1][0] = sfix(0.5)
+# X[1][1] = sfix(-0.3)
+# X[1][2] = sfix(-0.5)
 
-Y = sfix.Matrix(2, out_dim)
-Y[0][0] = sfix(1)
-Y[0][1] = sfix(0)
+Y = sfix.Matrix(1, 1)
+Y[0][0] = sfix(0)
+# Y[0][1] = sfix(0)
 
-Y[1][0] = sfix(0)
-Y[1][1] = sfix(1)
+# Y[1][0] = sfix(0)
+# Y[1][1] = sfix(1)
 
 out = network.forward(X[0])
-print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
-out = network.forward(X[1])
-print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
+# print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
+print_ln('before gradient %s', out[0].reveal())
+# out = network.forward(X[1])
+# # print_ln('before gradient %s %s', out[0].reveal(), out[1].reveal())
+# print_ln('before gradient %s', out[0].reveal())
 
 opt = nn.Optimizer(network, X, Y)
-opt.run(10)
+epochs, batch_size, learning_rate = 30, 1, 1
+opt.run(epochs, batch_size, learning_rate, alg="grad")
 
 out = network.forward(X[0])
-print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
-out = network.forward(X[1])
-print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
+# print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
+print_ln('after gradient %s', out[0].reveal())
+
+# out = network.forward(X[1])
+# # print_ln('after gradient %s %s', out[0].reveal(), out[1].reveal())
+# print_ln('before gradient %s', out[0].reveal())
+
+
+# from Compiler import nn_utils
+#
+# a = nn_utils.random_matrix(10, 3, 1)
+#
+# b = nn_utils.slice_matrix(a, 0, 4)
+#
+# # a[0][0] = sfix(0)
+# # @for_range(10)
+# # def f(i):
+# #     a[0][0] = a[0][0] + sfix(1)
+# print_ln('after gradient %s', b[0][0].reveal())
 
 #leave this
 s = sint(2)

@@ -26,6 +26,11 @@ network.layers
 opt = nn.Optimizer(network, X, Y)
 opt.run(2)
 
+a = sfix.Matrix(3,2)
+a[0][0] = sfix(0)
+@for_range(10)
+def f(i):
+    a[0][0] = a[0][0] + sfix(1)
 
 # def output_result(res):
 #     res.reveal_to(0)

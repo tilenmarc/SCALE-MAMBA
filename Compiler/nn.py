@@ -22,18 +22,17 @@ class NeuralNetwork:
 
         return self.in_outs[-1]
 
+    # assumes forward was called before
     def backward(self, lse):
         self.back_in_outs[self.num_layers] = lse
         for i in range(self.num_layers, 0, -1):
             self.back_in_outs[i - 1] = self.layers[i-1].backward(self.back_in_outs[i])
-            # vector_print(self.back_in_outs[i-1])
-            # print_ln('backs')
-
-        # return self.in_outs[0]
 
 class DenseLayer:
     def __init__(self, in_dim, out_dim):
-        self.W = random_matrix(out_dim, in_dim, 1.0 / out_dim)
+        self.W = random_matrix(out_dim, in_dim, 1.0 / in_dim)
+        self.b = random_vector(out_dim, 0.1)
+        # self.W = eye_matrix(out_dim, in_dim)
         self.in_vec = None
         self.out_vec = None
         self.nabla_W = None
@@ -42,13 +41,16 @@ class DenseLayer:
 
     def forward(self, x):
         self.in_vec = x
-        self.out_vec = matrix_mul_vec(self.W, x)
+        tmp = matrix_mul_vec(self.W, x)
+        self.out_vec = vector_add(tmp, self.b)
 
         return self.out_vec
 
     def backward(self, nabla_X_previous):
         self.nabla_W = matrix_mul(matrix_transpose(vec_to_matrix(nabla_X_previous)), vec_to_matrix(self.in_vec))
         # print_ln('compare before err %s %s %s', len(self.W), len(self.W[0]), len(nabla_X_previous))
+        # print_ln('backward %s %s %s', self.nabla_W[0][0].reveal(), self.nabla_W[0][1].reveal(), self.nabla_W[0][2].reveal())
+        self.nabla_b = nabla_X_previous
 
         self.nabla_x = matrix_mul_vec(matrix_transpose(self.W), nabla_X_previous)
         #
@@ -68,82 +70,183 @@ class ActivationLayer:
         self.in_vec = x
         if self.type == "sigmoid":
             self.out_vec = vectorize_sfix(sigmoid, self.in_vec)
+        if self.type == "approx_sigmoid":
+            self.out_vec = vectorize_sfix(approx_sigmoid, self.in_vec)
+        if self.type == "relu":
+            self.out_vec = vectorize_sfix(relu, self.in_vec)
+
         return self.out_vec
 
     def backward(self, nabla_X_previous):
         if self.type == "sigmoid":
             prime = vectorize_sfix(sigmoid_prime, self.in_vec)
-            # print_ln('compare before err %s %s', len(prime), len(nabla_X_previous))
-            #
-            self.nabla_x = mul_vec(prime, nabla_X_previous)
-            return self.nabla_x
+        if self.type == "approx_sigmoid":
+            prime = vectorize_sfix(approx_sigmoid_prime, self.in_vec)
+        if self.type == "relu":
+            prime = vectorize_sfix(relu_prime, self.in_vec)
+
+        self.nabla_x = mul_vec(prime, nabla_X_previous)
+
+        return self.nabla_x
 
 class Optimizer:
     def __init__(self, nn, X, Y):
         self.nn = nn
         self.X = X
         self.Y = Y
+        # self.m = 0
+        # self.v = 0
+        self.alpha = .001
+        self.beta1 = 0.9
+        self.beta2 = 0.999
+        # self.beta1_pow = 0.9
+        # self.beta2_pow = 0.999
+        self.epsilon = 10 ** -8
 
-    def lse(self):
+    def mse(self, X, Y):
         lse = MemValue(sfix(0))
-        @for_range(len(self.X))
+        @for_range(len(X))
         def g(i):
-            x = self.X[i]
-            y = self.Y[i]
+            x = X[i]
+            y = Y[i]
             out = self.nn.forward(x)
+            # print_ln('result %s', out[0].reveal())
             dif = minus_vec(y, out)
             lse.write(lse.read() + norm_vec(dif))
         return lse.read()
 
-    def run(self, iterations):
-        W_mem = [[[MemValue(L.W[i][j]) for j in range(len(L.W[0]))] for i in range(len(L.W))] if L.var else [] for L in self.nn.layers]
+    def cross_entropy(self, X, Y):
+        lse = MemValue(sfix(0))
+        @for_range(len(X))
+        def g(i):
+            x = X[i]
+            y = Y[i]
+            out = self.nn.forward(x)
+            # dif = minus_vec(y, out)
+            @for_range(len(x))
+            def ff(k):
+                error = y[k] * ((1 / out[k] * out[k] + 0.1) - 1)  + (1-y[k]) * (1 / ((1 - out[k]) * (1 - out[k] + 0.1) - 1))
+                lse.write(lse.read() + error)
+        return lse.read()
+
+    def run(self, epochs, batch_size, learning_rate, alg="grad"):
+        num_batches = ((len(self.X) - 1) / batch_size) + 1
+        print_ln('num batches %s, %s', num_batches, len(self.X))
+
+        G = [sfix.Matrix(len(L.W), len(L.W[0])) if L.var else [] for L in self.nn.layers]
+        Gb = [sfix.Array(len(L.b)) if L.var else [] for L in self.nn.layers]
+
+        if alg=="adam":
+            self.beta1_pows = Array(epochs, sfix)
+            self.beta2_pows = Array(epochs, sfix)
+            for i in range(epochs * num_batches):
+                self.beta1_pows[i] = 1. / (1 - self.beta1 ** (i + 1))
+                self.beta2_pows[i] = 1. / (1 - self.beta2 ** (i + 1))
+            self.m = [sfix.Matrix(len(L.W), len(L.W[0])) if L.var else [] for L in self.nn.layers]
+            self.v = [sfix.Matrix(len(L.W), len(L.W[0])) if L.var else [] for L in self.nn.layers]
+            for m in range(len(self.nn.layers)):
+                L = self.nn.layers[m]
+                if not L.var:
+                    continue
+                @for_range(len(L.W))
+                def _(k):
+                    @for_range(len(L.W[0]))
+                    def _(l):
+                        self.m[m][k][l] = sfix(0)
+                        self.v[m][k][l] = sfix(0)
 
 
-        @for_range(iterations)
-        def f(j):
-            loss = self.lse()
-            print_ln('loss %s', loss.reveal())
+        @for_range(epochs)
+        def one_epoch(ep):
+            print_ln('epoch %s', ep)
+
+            @for_range(num_batches)
+            def one_batch(j):
+                batch_X = slice_matrix(self.X, j * batch_size, (j + 1) * batch_size, batch_size)
+                batch_Y = slice_matrix(self.Y, j * batch_size, (j + 1) * batch_size, batch_size)
+
+                loss = self.mse(batch_X, batch_Y)
+                print_ln('loss %s', loss.reveal())
+
+                # cross_entropy = self.lse(batch_X, batch_Y)
+                # print_ln('cross entropy %s', cross_entropy.reveal())
+
+                for m in range(len(self.nn.layers)):
+                    L = self.nn.layers[m]
+                    if not L.var:
+                        continue
+                    @for_range(len(L.W))
+                    def ff(k):
+                        @for_range(len(L.W[0]))
+                        def ff(l):
+                            G[m][k][l] = sfix(0)
+
+                @for_range(batch_size)
+                def g(i):
+                    x = batch_X[i]
+                    y = batch_Y[i]
+
+                    self.nn.forward(x)
+                    mse_prime = minus_vec(self.nn.in_outs[-1], y)
+                    mse_prime = vec_mul_scalar(mse_prime, 1.0/batch_size)
+                    self.nn.backward(mse_prime)
+
+                    for m in range(len(self.nn.layers)):
+                        L = self.nn.layers[m]
+                        if not L.var:
+                            continue
+                        @for_range(len(L.W))
+                        def ff(k):
+                            Gb[m][k] = Gb[m][k] + self.nn.layers[m].nabla_b[k]
+                            # print_ln('derivative %s', Gb[m][k].reveal())
+
+                            @for_range(len(L.W[0]))
+                            def ff(l):
+                                G[m][k][l] = G[m][k][l] + self.nn.layers[m].nabla_W[k][l]
 
 
-            # print_ln('w2')
-            # matrix_print(self.W2)
-            # print_ln('w1')
-            # matrix_print(self.W1)
+                                # print_ln('derivative %s', G[m][k][l].reveal())
 
-            G_mem = [[[MemValue(sfix(0)) for _ in range(len(L.W[0]))] for _ in range(len(L.W))] if L.var else [] for L in self.nn.layers]
-
-            @for_range(len(self.X))
-            def g(i):
-                x = self.X[i]
-                y = self.Y[i]
-
-                # print_ln('W %s %s %s %s', self.W1[0][0].reveal(), self.W1[0][1].reveal(), self.W1[1][0].reveal(), self.W1[1][1].reveal())
-
-
-                self.nn.forward(x)
-                lse_prime = minus_vec(y, self.nn.in_outs[-1])
-                self.nn.backward(lse_prime)
-
-                for m in range(self.nn.num_layers):
-                    if self.nn.layers[m].var:
-                        for l in range(len(self.nn.layers[m].W[0])):
-                            for k in range(len(self.nn.layers[m].W)):
-                                # pass
-                                G_mem[m][k][l].write(G_mem[m][k][l].read() + self.nn.layers[m].nabla_W[k][l])
+                for m in range(len(self.nn.layers)):
+                    L = self.nn.layers[m]
+                    if not L.var:
+                        continue
+                    # if alg=="grad":
+                    #     self.nn.layers[m].W = matrix_add(self.nn.layers[m].W, matrix_mul_scalar(G[m], -learning_rate))
+                    #
+                    # if alg=="adam":
+                    #     self.m[m] = matrix_add(matrix_mul_scalar(self.m[m], self.beta1), matrix_mul_scalar(G[m], 1 - self.beta1))
+                    #     self.v[m] = matrix_add(matrix_mul_scalar(self.v[m], self.beta2), matrix_mul_scalar(matrix_mul_elementwise(G[m], G[m]), 1 - self.beta1))
+                    #     m_hat = matrix_mul_scalar(self.m[m], 1.0 / (1 - self.beta1_pow))
+                    #     v_hat = matrix_mul_scalar(self.v[m], 1.0 / (1 - self.beta2_pow))
+                    #     tmp = matrix_div(m_hat, matrix_sqrt(v_hat), self.epsilon)
+                    #     self.nn.layers[m].W = matrix_add(self.nn.layers[m].W, matrix_mul_scalar(tmp, -learning_rate))
+                    #
 
 
+                    @for_range(len(L.W))
+                    def ff(k):
+                        if alg=="grad":
+                            self.nn.layers[m].b[k] = self.nn.layers[m].b[k] - learning_rate*Gb[m][k]
 
-            for m in range(self.nn.num_layers):
-                if self.nn.layers[m].var:
-                    for l in range(len(self.nn.layers[m].W[0])):
-                        for k in range(len(self.nn.layers[m].W)):
-                            W_mem[m][k][l].write(W_mem[m][k][l].read() +  G_mem[m][k][l].read() / len(self.X))
-                            self.nn.layers[m].W[k][l] = W_mem[m][k][l].read()
+                        @for_range(len(L.W[0]))
+                        def ff(l):
+                            if alg=="grad":
+                                self.nn.layers[m].W[k][l] = self.nn.layers[m].W[k][l] - learning_rate*G[m][k][l]
+                            if alg=="adam":
+                                # print_ln('m before %s %s', self.m[m][k][l].reveal(), (1 - self.beta1))
 
+                                self.m[m][k][l] = (self.m[m][k][l] * self.beta1) + (G[m][k][l] * (1 - self.beta1))
+                                self.v[m][k][l] = (self.v[m][k][l] * self.beta2) + (G[m][k][l] * G[m][k][l] * (1 - self.beta2))
+                                m_hat = self.m[m][k][l] * self.beta1_pows[ep*num_batches + j]
+                                v_hat = self.v[m][k][l] * self.beta2_pows[ep*num_batches + j]
+                                # print_ln('m, v %s %s %s %s %s %s', self.m[m][k][l].reveal(), self.v[m][k][l].reveal(), m_hat.reveal(), v_hat.reveal(), G[m][k][l].reveal(), self.beta1_pows[ep].reveal())
+                                # print_ln('update %s', (m_hat / (mpc_math.sqrt(v_hat) + self.epsilon)).reveal())
 
-
-
-
+                                self.nn.layers[m].W[k][l] = self.nn.layers[m].W[k][l] - (learning_rate * m_hat / (mpc_math.sqrt(v_hat) + self.epsilon))
+                #
+                # self.beta1_pow = self.beta1_pow * self.beta1
+                # self.beta2_pow = self.beta2_pow * self.beta2
 
 
 
