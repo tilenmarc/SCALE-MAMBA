@@ -131,7 +131,6 @@ int OpenListener(int port, int max)
 int OpenConnection(const string &hostname, int port)
 {
   int sd;
-
   sd= socket(AF_INET, SOCK_STREAM, 0);
   if (sd == -1)
     {
@@ -224,9 +223,36 @@ void Get_Connections(int &ssocket, vector<vector<vector<int>>> &csocket,
                      const vector<unsigned int> &portnum, unsigned int me,
                      const SystemData &SD, int verbose)
 {
+//  if (me == 0) {
+//      struct sockaddr_in addr;
+//      bzero(&addr, sizeof(addr));
+//      socklen_t len= sizeof(addr);
+//      int ssocket2 = OpenListener(5005, 2);
+//      int client= accept(ssocket2, (struct sockaddr *) &addr,
+//                         &len); /* accept connection as usual */
+//      if (client == -1)
+//        {
+//          string err= "!!!!!!!!Unable to accept connections : Error code " +
+//                      number_to_string(errno);
+//          throw Networking_error(err);
+//        }
+//      if (verbose > 0 || true)
+//        {
+//          printf("!!!!!!!!!!S: Connection: %s:%d\n", inet_ntoa(addr.sin_addr), ntohs(addr.sin_port));
+//        }
+//    }
+//
+//  if (me == 1) {
+//      int csocket2 = OpenConnection("0.tcp.ngrok.io", 18782);
+//      if (true)
+//        {
+//          printf("C: Player connected to %d  \n", csocket2);
+//        }
+//    }
+//
   // create server socket
   unsigned int nthreads= csocket.size();
-  if (verbose > 0)
+  if (verbose > 0 || true)
     {
       printf("S: Player %d opening a server socket on port %d\n", me, portnum[me]);
     }
@@ -241,9 +267,9 @@ void Get_Connections(int &ssocket, vector<vector<vector<int>>> &csocket,
               bzero(&addr, sizeof(addr));
               socklen_t len= sizeof(addr);
 
-              /* We know that we are going to accept nthreads connections 
-	       * per player num with num<me so even though we dont know i 
-	       * is correct, we just loop on nthreads here 
+              /* We know that we are going to accept nthreads connections
+	       * per player num with num<me so even though we dont know i
+	       * is correct, we just loop on nthreads here
 	       */
               for (unsigned int j= 0; j < nthreads; j++)
                 {
@@ -257,7 +283,7 @@ void Get_Connections(int &ssocket, vector<vector<vector<int>>> &csocket,
                                       number_to_string(errno);
                           throw Networking_error(err);
                         }
-                      if (verbose > 0)
+                      if (verbose > 0 || true)
                         {
                           printf("S: Connection: %s:%d\n", inet_ntoa(addr.sin_addr), ntohs(addr.sin_port));
                         }
@@ -272,7 +298,7 @@ void Get_Connections(int &ssocket, vector<vector<vector<int>>> &csocket,
                       receive(client, buff, 4);
                       c= BYTES_TO_INT(buff);
                       csocket[t][p][c]= client;
-                      if (verbose > 0)
+                      if (verbose > 0 || true)
                         {
                           printf("S: Player %d connected to %d on connection %d for thread %d\n", me, p, c, t);
                         }
@@ -285,16 +311,20 @@ void Get_Connections(int &ssocket, vector<vector<vector<int>>> &csocket,
                 {
                   for (unsigned int k= 0; k < csocket[0][0].size(); k++)
                     {
-                      if (verbose > 0)
+                      if (verbose > 0 || true)
                         {
                           printf("C: Player %d connecting to player %d on connection %d at address %s for "
                                  "thread %d on port %d\n",
                                  me, i, k, SD.IP[i].c_str(), j, portnum[i]);
                         }
-                      csocket[j][i][k]= OpenConnection(SD.IP[i], portnum[i]);
-                      if (verbose > 0)
+                      if (i != 2) {
+                          csocket[j][i][k]= OpenConnection(SD.IP[i], portnum[i]);
+                        } else {
+                          csocket[j][i][k]= OpenConnection("0.tcp.eu.ngrok.io", portnum[i + SD.n]);
+                        }
+                      if (true)
                         {
-                          printf("C: Player %d connected to %d on connection %d for thread %d\n", me, i, k, j);
+                          printf("C: Player %d connected to %d on connection %d for thread %d port %d \n", me, i, k, j, portnum[i]);
                         }
                       // Send my number, my thread number and my connection
                       uint8_t buff[4];

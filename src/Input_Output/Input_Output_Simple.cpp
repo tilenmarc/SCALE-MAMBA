@@ -118,22 +118,69 @@ void Input_Output_Simple::public_output_int(const long output, unsigned int chan
   cout << " = 0x" << hex << output << dec << endl;
 }
 
-void Input_Output_Simple::output_share(const Share &S, unsigned int channel)
+void Input_Output_Simple::output_share(const Share &S, unsigned int channel, unsigned int whoimi)
 {
-  (*outf) << "Output channel " << channel << " : ";
-  S.output(*outf, human);
+  string line;
+  if (counter2 == 0)
+    {
+      output_shares_file.open("Input/output_shares" + std::to_string(whoimi) + ".txt");
+    }
+
+  S.output(output_shares_file, true);
+
+  counter2++;
 }
 
-Share Input_Output_Simple::input_share(unsigned int channel)
+Share Input_Output_Simple::input_share(unsigned int channel, unsigned int whoimi)
 {
-  cout << "Enter value on channel " << channel << " : ";
   Share S;
-  S.input(*inpf, human);
-  return S;
+
+  string line;
+  if (counter3 == 0) {
+      ifstream myfile;
+      string name;
+      name = "Input/data" + std::to_string(whoimi) + ".txt";
+
+      int size_of_vector = 0;
+      myfile.open(name);
+      while (std::getline(myfile, line)) {
+          size_of_vector++;
+        }
+      myfile.close();
+
+//      printf("len %d\n", size_of_vector);
+
+
+      myfile.open(name);
+      for (int i = 0; i < size_of_vector; i++) {
+//            printf("here iter: %d whomi %d\n", i, whoimi);
+
+          Share ss;
+          ss.input(myfile, true);
+          shares_vector.push_back(ss);
+
+//          ss.output(cout, true);
+        }
+      myfile.close();
+    }
+
+  Share ret = shares_vector[counter3];
+  counter3++;
+
+  return ret;
 }
 
 void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
 {
+
+  // reset the values
+  counter1 = 0;
+  counter2 = 0;
+  counter3 = 0;
+  output_shares_file.close();
+  free(input_vector);
+  shares_vector.clear();
+
   // if I got to here, it means that computations have finished
   // send finished msg
   char finished_msg[] = "fin";
@@ -156,12 +203,6 @@ void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
 
   // Load new schedule file program streams, using the original
   // program name
-  //
-  // Here you could define programatically what the new
-  // programs you want to run are, by directly editing the
-  // public variables in the schedule object.
-  counter1 = 0;
-  free(input_vector);
   unsigned int nthreads= schedule.Load_Programs();
   if (schedule.max_n_threads() < nthreads)
     {

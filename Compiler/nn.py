@@ -1,5 +1,5 @@
 from Compiler.nn_utils import *
-
+import math
 
 
 
@@ -115,23 +115,44 @@ class Optimizer:
             lse.write(lse.read() + norm_vec(dif))
         return lse.read()
 
+    def mse_prime(self, x, y):
+        out = self.nn.forward(x)
+        prime = minus_vec(out, y)
+        prime = vec_mul_scalar(prime, 2)
+        # @for_range(len(y))
+        # def ff(k):
+        #     print_ln('mse prime %s', prime[k].reveal())
+        return prime
+
     def cross_entropy(self, X, Y):
         lse = MemValue(sfix(0))
         @for_range(len(X))
         def g(i):
             x = X[i]
             y = Y[i]
-            out = self.nn.forward(x)
-            # dif = minus_vec(y, out)
-            @for_range(len(x))
+            out1 = self.nn.forward(x)
+            # print_ln('result %s', out1[0].reveal())
+            @for_range(len(y))
             def ff(k):
-                error = y[k] * ((1 / out[k] * out[k] + 0.1) - 1)  + (1-y[k]) * (1 / ((1 - out[k]) * (1 - out[k] + 0.1) - 1))
+                error = -(y[k] * ln_approx(out1[k]) + (1-y[k]) * ln_approx(1-out1[k]))
+                # # error = y[k] * ((1 / out[k] * out[k] + 0.1) - 1)  + (1-y[k]) * (1 / ((1 - out[k]) * (1 - out[k] + 0.1) - 1))
+                # print_ln('err %s %s %s', error.reveal(), (out1[k]).reveal(), ln_approx(out1[k]).reveal())
+                # print_ln('part cross %s', lse.read().reveal())
                 lse.write(lse.read() + error)
         return lse.read()
 
+    def cross_entropy_prime(self, x, y):
+        prime = sfix.Array(len(y))
+        out = self.nn.forward(x)
+        @for_range(len(y))
+        def ff(k):
+            prime[k] = -(y[k] / (out[k] + self.epsilon) + (y[k]-1) / ((1-out[k]) + self.epsilon))
+            # print_ln('cross prime %s', prime[k].reveal())
+        return prime
+
     def run(self, epochs, batch_size, learning_rate, alg="grad"):
         num_batches = ((len(self.X) - 1) / batch_size) + 1
-        print_ln('num batches %s, %s', num_batches, len(self.X))
+        # print_ln('num batches %s, %s', num_batches, len(self.X))
 
         G = [sfix.Matrix(len(L.W), len(L.W[0])) if L.var else [] for L in self.nn.layers]
         Gb = [sfix.Array(len(L.b)) if L.var else [] for L in self.nn.layers]
@@ -168,7 +189,7 @@ class Optimizer:
                 loss = self.mse(batch_X, batch_Y)
                 print_ln('loss %s', loss.reveal())
 
-                # cross_entropy = self.lse(batch_X, batch_Y)
+                # cross_entropy = self.cross_entropy(batch_X, batch_Y)
                 # print_ln('cross entropy %s', cross_entropy.reveal())
 
                 for m in range(len(self.nn.layers)):
@@ -186,10 +207,10 @@ class Optimizer:
                     x = batch_X[i]
                     y = batch_Y[i]
 
-                    self.nn.forward(x)
-                    mse_prime = minus_vec(self.nn.in_outs[-1], y)
-                    mse_prime = vec_mul_scalar(mse_prime, 1.0/batch_size)
-                    self.nn.backward(mse_prime)
+                    prime = self.mse_prime(x, y)
+                    # prime = self.cross_entropy_prime(x, y)
+
+                    self.nn.backward(prime)
 
                     for m in range(len(self.nn.layers)):
                         L = self.nn.layers[m]

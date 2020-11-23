@@ -2268,7 +2268,7 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
               }
             for (unsigned int j= 0; j < c_start.size(); j++)
               {
-                machine.get_IO().output_share(Proc.get_Sp_ref(c_start[j]), p);
+                machine.get_IO().output_share(Proc.get_Sp_ref(c_start[j]), p, P.whoami());
               }
             break;
           case INPUT_SHARES:
@@ -2278,7 +2278,7 @@ bool Instruction::execute(Processor &Proc, Player &P, Machine &machine,
               }
             for (unsigned int j= 0; j < c_start.size(); j++)
               {
-                Proc.get_Sp_ref(c_start[j])= machine.get_IO().input_share(p);
+                Proc.get_Sp_ref(c_start[j])= machine.get_IO().input_share(p, P.whoami());
               }
             break;
           case INPUT_CLEAR:

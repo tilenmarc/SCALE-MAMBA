@@ -189,6 +189,8 @@ int main(int argc, const char *argv[])
   opt.get("-min")->getInts(minimums);
   opt.get("-max")->getInts(maximums);
 
+  printf("port base!!!!! %d \n", te);
+
   if (opt.isSet("-dOT"))
     {
       OT_disable= true;
@@ -254,7 +256,7 @@ int main(int argc, const char *argv[])
       throw data_mismatch();
     }
 
-  if (SD.n != pns.size() && pns.size() != 0)
+  if (2*SD.n != pns.size() && pns.size() != 0)
     {
       throw data_mismatch();
     }
@@ -262,8 +264,10 @@ int main(int argc, const char *argv[])
   /*************************************
    *    Initialize the portnums        *
    *************************************/
-  vector<unsigned int> portnum(SD.n);
-  for (unsigned int i= 0; i < SD.n; i++)
+  printf("port num!!!!! %d \n", SD.n);
+
+  vector<unsigned int> portnum(2*SD.n);
+  for (unsigned int i= 0; i < 2*SD.n; i++)
     {
       if (pns.size() == 0)
         {

@@ -1,2 +1,72 @@
-open_channel_with_return(5011)
+from Compiler import input_output
+
+# l = 9
+
+def output_result(res):
+    output_shares(0, res)
+#
+# def shares_input(a):
+#     @for_range(9)
+#     def f(i):
+#         # output_shares(0, a[i])
+#         r = sint()
+#         input_shares(0, r)
+#         a[i] = r
+#         # print_ln('a_i %s', r.reveal())
+#
+#
+# a = input_output.load_sint_array(l)
+# shares_input(a)
+
+# lse = MemValue(sfix(0))
+@for_range(10)
+def g(i):
+    a = sfix(2) * sfix(3)
+
+# from Compiler import array_util
+# from Compiler import nn_utils
+#
+# l = 100
+# a = Array(l, sint)
+# @for_range(l)
+# def f(i):
+#     a[i] = sint(l-i)**2
+#
+# nn_utils.vector_print(a)
+#
+# array_util.bubbleSort(a)
+#
+# nn_utils.vector_print(a)
+
+
+from Compiler import anonymization
+from Compiler import nn_utils
+
+# W = sint.Matrix(1000, 1000)
+
+def random_matrix(dim1, dim2, r):
+    W = sint.Matrix(dim1, dim2)
+    @for_range(dim1)
+    def f(i):
+        @for_range(dim2)
+        def g(j):
+            W[i][j] = sint(13*(i+1)*(j+1) + 1) % r
+            # print_ln('random %s %s', W[i][j].reveal(), r)
+
+    return W
+
+# # i = sint(5)
+# @while_do(lambda x: x<5, sint(3))
+# def loopbody(i):
+#     print_ln("%s",i.reveal())
+#     return i+1
+
+A= random_matrix(10, 10, 8)
+# nn_utils.matrix_print(A)
+
+print_ln("start")
+anonymization.anonymize_simple(A, 2, 3)
+
+output_result(sint(3))
+# output_result(a[1])
 restart()

@@ -87,10 +87,10 @@ public:
 
   // Receive a share value from the engine. This is perhaps
   // for external persistant storage by the player
-  virtual void output_share(const Share &S, unsigned int channel)= 0;
+  virtual void output_share(const Share &S, unsigned int channel, unsigned int whoimi)= 0;
 
   // And allow external system to enter a share value
-  virtual Share input_share(unsigned int channel)= 0;
+  virtual Share input_share(unsigned int channel, unsigned int whoimi)= 0;
 
   // Trigger function for restarts
   virtual void trigger(Schedule &schedule, int whoami)= 0;
