@@ -1,0 +1,42 @@
+from Compiler import input_output
+
+l = LEN
+
+def load_fix():
+    v0 = sint.get_private_input_from(0, 0)
+    v1 = sint.get_private_input_from(1, 1)
+    v2 = sint.get_private_input_from(2, 2)
+
+    v = ((v0 + v1 + v2) % 2**41)
+    v = v - ((v >> 40) * 2**41)
+    fx = sfix(0)
+    fx.v = v
+
+    return fx
+
+def load_fix_array():
+    a = sfix.Array(LEN)
+    @for_range(LEN)
+    def f(i):
+        a[i] = load_fix()
+    return a
+
+def max(a):
+    res = Array(l + 1, sint)
+    res[0] = sint(0)
+    @for_range(l)
+    def f(i):
+        c = res[i] < a[i]
+        res[i+1] = res[i] * (1 - c) + a[i] * c
+    return res[l]
+
+a = load_fix_array()
+s = max(a)
+
+
+
+def output_result(res):
+    res.reveal_to(0)
+output_result(s)
+
+restart()

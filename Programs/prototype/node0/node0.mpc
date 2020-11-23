@@ -1,2 +1,102 @@
-open_channel_with_return(5009)
+from Compiler import nn
+
+def output_result(res):
+    res.reveal_to(0)
+
+def load_fix():
+    v0 = sint.get_private_input_from(0, 0)
+    v1 = sint.get_private_input_from(1, 1)
+    v2 = sint.get_private_input_from(2, 2)
+
+    v = ((v0 + v1 + v2) % 2**41)
+    v = v - ((v >> 40) * 2**41)
+    fx = sfix(0)
+    fx.v = v
+
+    return fx
+
+def load_fix_array():
+    a = sfix.Array(160)
+    @for_range(160)
+    def f(i):
+        a[i] = load_fix()
+    return a
+
+def load_input_output():
+    a = load_fix_array()
+    X = sfix.Matrix(160 / (15 + 1), 15)
+    Y = sfix.Matrix(160 / (15 + 1), 1)
+
+    @for_range(160 / (15 + 1))
+    def f(i):
+        @for_range(15 + 1)
+        def g(j):
+            if_then(j < 15)
+            X[i][j] = a[i * (15 + 1) + j]
+            else_then()
+            Y[i][j - 15] = a[i * (15 + 1) + j]
+            end_if()
+
+    return X, Y
+
+def normalize(X):
+    max_vals = sfix.Array(15)
+    @for_range(15)
+    def f(i):
+        max_vals[i] = sfix(0)
+    @for_range(160 / (15 + 1))
+    def f(i):
+        @for_range(15)
+        def g(j):
+            max_vals[j] = (X[i][j] > max_vals[j]).if_else(X[i][j], max_vals[j])
+    @for_range(160 / (15 + 1))
+    def f(i):
+        @for_range(15)
+        def g(j):
+            X[i][j] = (sfix(0) < max_vals[j]).if_else(X[i][j] / max_vals[j], X[i][j])
+
+
+X, Y = load_input_output()
+normalize(X)
+
+# @for_range(160 / (15 + 1))
+# def f(i):
+#     @for_range(15)
+#     def g(j):
+#         print_ln('in %s', X[i][j].reveal())
+#
+#
+# @for_range(160 / (15 + 1))
+# def f(i):
+#     @for_range(1)
+#     def g(j):
+#         print_ln('out %s', Y[i][j].reveal())
+
+
+# network = nn.NeuralNetwork([nn.DenseLayer(15, 5), nn.ActivationLayer("approx_sigmoid"), nn.DenseLayer(5, 1), nn.ActivationLayer("approx_sigmoid")])
+network = nn.NeuralNetwork([nn.DenseLayer(15, 1), nn.ActivationLayer("approx_sigmoid")])
+
+print_ln('one line %s %s %s %s %s', X[0][0].reveal(),X[0][1].reveal(),X[0][2].reveal(),X[0][3].reveal(),X[0][4].reveal())
+print_ln('W %s %s %s %s %s', network.layers[0].W[0][0].reveal(),network.layers[0].W[0][1].reveal(),network.layers[0].W[0][2].reveal(),network.layers[0].W[0][3].reveal(),network.layers[0].W[0][4].reveal())
+
+out = network.forward(X[0])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+print_ln('num batches %s', len(X))
+
+opt = nn.Optimizer(network, X, Y)
+epochs, batch_size, learning_rate = 15, 5, 1
+opt.run(epochs, batch_size, learning_rate, "grad")
+
+out = network.forward(X[0])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+
+
+#leave this
+s = sint(2)
+output_result(s)
 restart()
+
