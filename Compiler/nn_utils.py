@@ -20,6 +20,13 @@ def random_vector(dim1, r):
         W[i] = sfix.get_random(-r, r)
     return W
 
+def constant_vector(dim1, r):
+    v = sfix.Array(dim1)
+    @for_range(dim1)
+    def f(i):
+        v[i] = sfix(r)
+    return v
+
 def random_matrix(dim1, dim2, r):
     W = sfix.Matrix(dim1, dim2)
     @for_range(dim1)
@@ -146,6 +153,15 @@ def relu_prime(x):
     """ ReLU derivative. """
 
     return (0 <= x).if_else(sfix(1), sfix(0))
+
+# approx for x in (0, 1]
+def ln_approx(x):
+    z = 1 - x
+    z2 = z * z
+    z3 = z * z2
+    z4 = z * z3
+
+    return -(z + z2/2 + z3/3 + z4/4)
 
 def mul_vec(x, y):
     n = len(x)
@@ -299,4 +315,31 @@ def vector_print(v):
     def f(i):
         print_ln('%s', v[i].reveal())
 
+def matrix_print(v):
+    rows = len(v)
+    cols = len(v[0])
+    print_ln('matrix')
+    @for_range(rows)
+    def f(i):
+        print_ln('row')
+        @for_range(cols)
+        def g(j):
+            print_ln('%s', v[i][j].reveal())
+
+def normalize(X):
+    dim1, dim2 = len(X), len(X[0])
+    max_vals = sfix.Array(dim2)
+    @for_range(dim2)
+    def f(i):
+        max_vals[i] = sfix(0)
+    @for_range(dim1)
+    def f(i):
+        @for_range(dim2)
+        def g(j):
+            max_vals[j] = (X[i][j] > max_vals[j]).if_else(X[i][j], max_vals[j])
+    @for_range(dim1)
+    def f(i):
+        @for_range(dim2)
+        def g(j):
+            X[i][j] = (sfix(0) < max_vals[j]).if_else(X[i][j] / max_vals[j], X[i][j])
 

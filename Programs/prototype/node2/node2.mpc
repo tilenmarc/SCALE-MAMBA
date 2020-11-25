@@ -1,102 +1,72 @@
-from Compiler import nn
+from Compiler import input_output
+
+# l = 9
 
 def output_result(res):
-    res.reveal_to(0)
-
-def load_fix():
-    v0 = sint.get_private_input_from(0, 0)
-    v1 = sint.get_private_input_from(1, 1)
-    v2 = sint.get_private_input_from(2, 2)
-
-    v = ((v0 + v1 + v2) % 2**41)
-    v = v - ((v >> 40) * 2**41)
-    fx = sfix(0)
-    fx.v = v
-
-    return fx
-
-def load_fix_array():
-    a = sfix.Array(160)
-    @for_range(160)
-    def f(i):
-        a[i] = load_fix()
-    return a
-
-def load_input_output():
-    a = load_fix_array()
-    X = sfix.Matrix(160 / (15 + 1), 15)
-    Y = sfix.Matrix(160 / (15 + 1), 1)
-
-    @for_range(160 / (15 + 1))
-    def f(i):
-        @for_range(15 + 1)
-        def g(j):
-            if_then(j < 15)
-            X[i][j] = a[i * (15 + 1) + j]
-            else_then()
-            Y[i][j - 15] = a[i * (15 + 1) + j]
-            end_if()
-
-    return X, Y
-
-def normalize(X):
-    max_vals = sfix.Array(15)
-    @for_range(15)
-    def f(i):
-        max_vals[i] = sfix(0)
-    @for_range(160 / (15 + 1))
-    def f(i):
-        @for_range(15)
-        def g(j):
-            max_vals[j] = (X[i][j] > max_vals[j]).if_else(X[i][j], max_vals[j])
-    @for_range(160 / (15 + 1))
-    def f(i):
-        @for_range(15)
-        def g(j):
-            X[i][j] = (sfix(0) < max_vals[j]).if_else(X[i][j] / max_vals[j], X[i][j])
-
-
-X, Y = load_input_output()
-normalize(X)
-
-# @for_range(160 / (15 + 1))
-# def f(i):
-#     @for_range(15)
-#     def g(j):
-#         print_ln('in %s', X[i][j].reveal())
+    output_shares(0, res)
+#
+# def shares_input(a):
+#     @for_range(9)
+#     def f(i):
+#         # output_shares(0, a[i])
+#         r = sint()
+#         input_shares(0, r)
+#         a[i] = r
+#         # print_ln('a_i %s', r.reveal())
 #
 #
-# @for_range(160 / (15 + 1))
+# a = input_output.load_sint_array(l)
+# shares_input(a)
+
+# lse = MemValue(sfix(0))
+@for_range(10)
+def g(i):
+    a = sfix(2) * sfix(3)
+
+# from Compiler import array_util
+# from Compiler import nn_utils
+#
+# l = 100
+# a = Array(l, sint)
+# @for_range(l)
 # def f(i):
-#     @for_range(1)
-#     def g(j):
-#         print_ln('out %s', Y[i][j].reveal())
+#     a[i] = sint(l-i)**2
+#
+# nn_utils.vector_print(a)
+#
+# array_util.bubbleSort(a)
+#
+# nn_utils.vector_print(a)
 
 
-# network = nn.NeuralNetwork([nn.DenseLayer(15, 5), nn.ActivationLayer("approx_sigmoid"), nn.DenseLayer(5, 1), nn.ActivationLayer("approx_sigmoid")])
-network = nn.NeuralNetwork([nn.DenseLayer(15, 1), nn.ActivationLayer("approx_sigmoid")])
+from Compiler import anonymization
+from Compiler import nn_utils
 
-print_ln('one line %s %s %s %s %s', X[0][0].reveal(),X[0][1].reveal(),X[0][2].reveal(),X[0][3].reveal(),X[0][4].reveal())
-print_ln('W %s %s %s %s %s', network.layers[0].W[0][0].reveal(),network.layers[0].W[0][1].reveal(),network.layers[0].W[0][2].reveal(),network.layers[0].W[0][3].reveal(),network.layers[0].W[0][4].reveal())
+# W = sint.Matrix(1000, 1000)
 
-out = network.forward(X[0])
-print_ln('before gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
-out = network.forward(X[1])
-print_ln('before gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
-print_ln('num batches %s', len(X))
+def random_matrix(dim1, dim2, r):
+    W = sint.Matrix(dim1, dim2)
+    @for_range(dim1)
+    def f(i):
+        @for_range(dim2)
+        def g(j):
+            W[i][j] = sint(13*(i+1)*(j+1) + 1) % r
+            # print_ln('random %s %s', W[i][j].reveal(), r)
 
-opt = nn.Optimizer(network, X, Y)
-epochs, batch_size, learning_rate = 15, 5, 1
-opt.run(epochs, batch_size, learning_rate, "grad")
+    return W
 
-out = network.forward(X[0])
-print_ln('after gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
-out = network.forward(X[1])
-print_ln('after gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+# # i = sint(5)
+# @while_do(lambda x: x<5, sint(3))
+# def loopbody(i):
+#     print_ln("%s",i.reveal())
+#     return i+1
 
+A= random_matrix(10, 10, 8)
+# nn_utils.matrix_print(A)
 
-#leave this
-s = sint(2)
-output_result(s)
+print_ln("start")
+anonymization.anonymize_simple(A, 2, 3)
+
+output_result(sint(3))
+# output_result(a[1])
 restart()
-
