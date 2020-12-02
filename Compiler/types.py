@@ -1973,6 +1973,20 @@ class sfix(_number):
         else:
             cls.k = k
 
+    @vectorized_classmethod
+    def get_random(cls, lower, upper):
+        """ Uniform secret random number around centre of bounds.
+        Actual range can be smaller but never larger.
+
+        :param lower: float
+        :param upper: float
+        """
+        log_range = int(math.log(upper - lower, 2))
+        n_bits = log_range + cls.f
+        average = lower + 0.5 * (upper - lower)
+        lower = average - 0.5 * 2 ** log_range
+        return sfix(sint.get_random_int(n_bits)) + lower
+
     @classmethod
     def conv(cls, other):
         if isinstance(other, MemValue):
@@ -2913,6 +2927,9 @@ class Array(object):
 
         return self
 
+    def same_shape(self):
+        return Array(self.length, self.value_type)
+
 
 sint.dynamic_array = Array
 
@@ -2935,6 +2952,9 @@ class Matrix(object):
 
     def __len__(self):
         return self.rows
+
+    def same_shape(self):
+        return Matrix(self.rows, self.columns, self.value_type)
 
     def assign_all(self, value):
         @library.for_range(len(self))
@@ -2970,6 +2990,8 @@ class MultiArray(object):
     def __getitem__(self, index):
         return SubMultiArray(self.sizes[1:], self.value_type, \
                              self.array.address, index)
+    def alloc(self):
+        pass
 
 
 class VectorArray(object):

@@ -1,33 +1,18 @@
-def load_data():
-    a1 = Array(LEN, sint)
-    a2 = Array(LEN, sint)
-    a3 = Array(LEN, sint)
-    a = Array(LEN, sint)
-    @for_range(LEN)
-    def f(i):
-        a1[i] = sint.get_private_input_from(0, 0)
-        a2[i] = sint.get_private_input_from(1, 1)
-        a3[i] = sint.get_private_input_from(2, 2)
-        a[i] = a1[i] + a2[i]
-        a[i] = a[i] + a3[i]
-        a[i] = a[i] % 2**32
+from Compiler import input_output
 
-    return a
-
-def output_result(res):
-    res.reveal_to(0)
+l = LEN
 
 def max(a):
-    res = Array(LEN + 1, sint)
+    res = Array(l + 1, sint)
     res[0] = sint(0)
-    @for_range(LEN)
+    @for_range(l)
     def f(i):
         c = res[i] < a[i]
         res[i+1] = res[i] * (1 - c) + a[i] * c
-    return res[LEN]
+    return res[l]
 
-a = load_data()
+a = input_output.load_sint_array(l)
 s = max(a)
-output_result(s)
+input_output.output_sint(s)
 
 restart()

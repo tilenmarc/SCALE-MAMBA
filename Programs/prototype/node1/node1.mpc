@@ -1,32 +1,35 @@
-def load_data():
-    a1 = Array(10, sint)
-    a2 = Array(10, sint)
-    a3 = Array(10, sint)
-    a = Array(10, sint)
-    @for_range(10)
-    def f(i):
-        a1[i] = sint.get_private_input_from(0, 0)
-        a2[i] = sint.get_private_input_from(1, 1)
-        a3[i] = sint.get_private_input_from(2, 2)
-        a[i] = a1[i] + a2[i]
-        a[i] = a[i] + a3[i]
-        a[i] = a[i] % 2**32
+from Compiler import nn
+from Compiler import input_output
 
-    return a
+l = 160
+dim_x = [160 / (15 + 1), 15]
+dim_y = [160 / (15 + 1), 1]
 
-def output_result(res):
-    res.reveal_to(0)
+X, Y = input_output.load_X_Y(dim_x, dim_y, l)
+nn.normalize(X)
 
-def sum(a):
-    res = Array(10 + 1, sint)
-    res[0] = sint(0)
-    @for_range(10)
-    def f(i):
-        res[i+1] = res[i] + a[i]
-    return res[10]
+# network = nn.NeuralNetwork([nn.DenseLayer(15, 5), nn.ActivationLayer("approx_sigmoid"), nn.DenseLayer(5, 1), nn.ActivationLayer("approx_sigmoid")])
+network = nn.NeuralNetwork([nn.DenseLayer(15, 1), nn.ActivationLayer("approx_sigmoid")])
 
-a = load_data()
-s = sum(a)
-output_result(s)
+# print_ln('one line %s %s %s %s %s', X[0][0].reveal(),X[0][1].reveal(),X[0][2].reveal(),X[0][3].reveal(),X[0][4].reveal())
+# print_ln('W %s %s %s %s %s', network.layers[0].W[0][0].reveal(),network.layers[0].W[0][1].reveal(),network.layers[0].W[0][2].reveal(),network.layers[0].W[0][3].reveal(),network.layers[0].W[0][4].reveal())
+
+out = network.forward(X[0])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+print_ln('num batches %s', len(X))
+
+opt = nn.Optimizer(network, X, Y)
+epochs, batch_size, learning_rate = 10, 2, 0.2
+opt.run(epochs, batch_size, learning_rate, "grad")
+
+out = network.forward(X[0])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+
+
+input_output.output_sfix_array(out)
 
 restart()

@@ -1,0 +1,35 @@
+from Compiler import nn
+from Compiler import input_output
+
+l = LEN
+dim_x = [LEN / (IN_DIM + OUT_DIM), IN_DIM]
+dim_y = [LEN / (IN_DIM + OUT_DIM), OUT_DIM]
+
+X, Y = input_output.load_X_Y(dim_x, dim_y, l)
+nn.normalize(X)
+
+# network = nn.NeuralNetwork([nn.DenseLayer(IN_DIM, HID_DIM), nn.ActivationLayer("approx_sigmoid"), nn.DenseLayer(HID_DIM, OUT_DIM), nn.ActivationLayer("approx_sigmoid")])
+network = nn.NeuralNetwork([nn.DenseLayer(IN_DIM, OUT_DIM), nn.ActivationLayer("approx_sigmoid")])
+
+# print_ln('one line %s %s %s %s %s', X[0][0].reveal(),X[0][1].reveal(),X[0][2].reveal(),X[0][3].reveal(),X[0][4].reveal())
+# print_ln('W %s %s %s %s %s', network.layers[0].W[0][0].reveal(),network.layers[0].W[0][1].reveal(),network.layers[0].W[0][2].reveal(),network.layers[0].W[0][3].reveal(),network.layers[0].W[0][4].reveal())
+
+out = network.forward(X[0])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('before gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+print_ln('num batches %s', len(X))
+
+opt = nn.Optimizer(network, X, Y)
+epochs, batch_size, learning_rate = 10, 2, 0.2
+opt.run(epochs, batch_size, learning_rate, "grad")
+
+out = network.forward(X[0])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[0][0].reveal())
+out = network.forward(X[1])
+print_ln('after gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
+
+
+input_output.output_sfix_array(out)
+
+restart()

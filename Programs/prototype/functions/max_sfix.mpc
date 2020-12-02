@@ -1,0 +1,20 @@
+from Compiler import input_output
+
+l = LEN
+
+def max(a):
+    res = MemValue(sfix(-1000000))
+    @for_range(l)
+    def f(i):
+        c = res.read() < a[i]
+        res.write(res.read() * (1 - c) + a[i] * c)
+    return res.read()
+
+a = input_output.load_sfix_array(l)
+s = max(a)
+print_ln('max %s', s.reveal())
+
+input_output.output_sfix(s)
+input_output.output_sfix(a[1])
+
+restart()

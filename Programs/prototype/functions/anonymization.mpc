@@ -1,0 +1,23 @@
+from Compiler import anonymization
+
+
+def random_matrix(dim1, dim2, r):
+    W = sint.Matrix(dim1, dim2)
+    @for_range(dim1)
+    def f(i):
+        @for_range(dim2)
+        def g(j):
+            W[i][j] = sint(13*(i+1)*(j+1) + 1) % r
+            # print_ln('random %s %s', W[i][j].reveal(), r)
+
+    return W
+
+
+
+A= random_matrix(200, 10, 16)
+
+print_ln("start")
+anonymization.anonymize_simple(A, 2, 6)
+
+output_result(sint(3))
+restart()
