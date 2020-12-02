@@ -1,6 +1,2 @@
-from Compiler import input_output
-
-a = sint(1) * sint(3)
-
-input_output.output_sint(s)
+open_channel_with_return(PORT)
 restart()

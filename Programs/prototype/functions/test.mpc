@@ -1,0 +1,45 @@
+from Compiler import input_output
+
+# l = LEN
+
+# def output_result(res):
+#     output_shares(0, res)
+#
+# def shares_input(a):
+#     @for_range(LEN)
+#     def f(i):
+#         # output_shares(0, a[i])
+#         r = sint()
+#         input_shares(0, r)
+#         a[i] = r
+#         # print_ln('a_i %s', r.reveal())
+#
+#
+# a = input_output.load_sint_array(l)
+# shares_input(a)
+
+# lse = MemValue(sfix(0))
+a = sint(0)
+@for_range(1)
+def g(i):
+    a = sint(2) * sint(3)
+
+# from Compiler import array_util
+# from Compiler import nn_utils
+#
+# l = 100
+# a = Array(l, sint)
+# @for_range(l)
+# def f(i):
+#     a[i] = sint(l-i)**2
+#
+# nn_utils.vector_print(a)
+#
+# array_util.bubbleSort(a)
+#
+# nn_utils.vector_print(a)
+
+
+output_result(a)
+# output_result(a[1])
+restart()
