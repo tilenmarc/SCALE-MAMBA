@@ -5,5 +5,5 @@ a = sint(0)
 def g(i):
     a = sint(2) * sint(3)
 
-input_output.output_sfix_array(a)
+input_output.output_sint(a)
 restart()
