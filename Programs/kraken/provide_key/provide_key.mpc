@@ -1,0 +1,7 @@
+from Compiler import input_output
+
+a = input_output.load_sint_array(1)
+
+s = sint(6) * sint(5)
+
+input_output.output_sint(s)
