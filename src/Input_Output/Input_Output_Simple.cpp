@@ -35,7 +35,7 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel, unsigned int wh
 
       ifstream myfile;
       string name;
-      name = "Input/data" + std::to_string(whoimi) + ".txt";
+      name = "Input/private_input" + std::to_string(whoimi) + ".txt";
 
       int size_of_vector = 0;
       myfile.open(name);
@@ -49,7 +49,8 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel, unsigned int wh
       myfile.open(name);
       for (int i = 0; i < size_of_vector; i++) {
           getline (myfile, line);
-          input_vector[i] = std::stoul(line);
+//          cout << "here" << line.substr(2,line.length()) << endl;
+          input_vector[i] = std::stoul(line.substr(2,line.length()));
         }
       input_vector[size_of_vector] = (unsigned long)NULL;
       myfile.close();
@@ -68,15 +69,20 @@ gfp Input_Output_Simple::private_input_gfp(unsigned int channel, unsigned int wh
 void Input_Output_Simple::private_output_gfp(const gfp &output, unsigned int channel)
 {
   ofstream result, finish;
+  if (counter4 == 0) {
+    result.open ("Input/private_output.txt");
+    result.close();
+    counter4++;
+  }
 
-  result.open ("Input/result.txt");
-  output.output(result, true);
-  result << "\n";
-  result.close();
+  std::ofstream res("Input/private_output.txt", std::ios_base::app | std::ios_base::out);
 
-  finish.open ("Input/finish.txt");
-  finish << "true\n";
-  finish.close();
+  output.output(res, true);
+  res << "\n";
+
+//  finish.open ("Input/finish.txt");
+//  finish << "true\n";
+//  finish.close();
 }
 
 gfp Input_Output_Simple::public_input_gfp(unsigned int channel)
@@ -139,7 +145,7 @@ Share Input_Output_Simple::input_share(unsigned int channel, unsigned int whoimi
   if (counter3 == 0) {
       ifstream myfile;
       string name;
-      name = "Input/data" + std::to_string(whoimi) + ".txt";
+      name = "Input/input_shares" + std::to_string(whoimi) + ".txt";
 
       int size_of_vector = 0;
       myfile.open(name);

@@ -1,7 +1,66 @@
 from Compiler import input_output
 
-a = input_output.load_sint_array(1)
+def to_bits(x):
+    y = Array(8, sint)
+    y[0] = x % 2
+    for i in range(7):
+        y[i+1] = ((x - (x % 2**(i+1))) / 2**(i+1)) % 2
+    return y
 
-s = sint(6) * sint(5)
+def bits_to_sint(y):
+    x = sint(0)
+    for i in range(8):
+        x = x + (y[i] * 2**i)
+    return x
 
-input_output.output_sint(s)
+def bits_sum(r0, r1, r2):
+    y = Array(8, sint)
+    @for_range(8)
+    def f(i):
+        y[i] = (r0[i] + r1[i] + r2[i]) % 2
+    return y
+
+a0 = input_output.load_private_sint_array(32, 0)
+a1 = input_output.load_private_sint_array(32, 1)
+a2 = input_output.load_private_sint_array(32, 2)
+
+ret = Array(32, sint)
+@for_range(32)
+def f(i):
+    r0 = to_bits(a0[i])
+    r1 = to_bits(a1[i])
+    r2 = to_bits(a2[i])
+    y = bits_sum(r0, r1, r2)
+    ret[i] = bits_to_sint(y)
+
+
+input_output.output_private_sint_array(ret, 0)
+
+
+# r0 = bits(sint(78))
+# r1 = bits(sint(197))
+# r2 = bits(sint(188))
+#
+# @for_range(8)
+# def f(i):
+#     print_ln('bits: %s', r0[i].reveal())
+# print_ln('bla')
+# @for_range(8)
+# def f(i):
+#     print_ln('bits: %s', r1[i].reveal())
+# print_ln('bla')
+#
+# @for_range(8)
+# def f(i):
+#     print_ln('bits: %s', r2[i].reveal())
+#
+# y = bits_sum(r0, r1, r2)
+# print_ln('bla')
+#
+# @for_range(8)
+# def f(i):
+#     print_ln('bits: %s', y[i].reveal())
+#
+# r = bits_to_sint(y)
+#
+# print_ln('size: %s', r.reveal())

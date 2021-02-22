@@ -16,21 +16,26 @@ def load_sint_old():
     return v
 
 def load_sint_array(l):
-    # a1 = Array(LEN, sint)
-    # a2 = Array(LEN, sint)
-    # a3 = Array(LEN, sint)
     a = Array(l, sint)
     @for_range(l)
     def f(i):
-        # a1[i] = sint.get_private_input_from(0, 0)
-        # a2[i] = sint.get_private_input_from(1, 1)
-        # a3[i] = sint.get_private_input_from(2, 2)
-        # a[i] = a1[i] + a2[i]
-        # a[i] = a[i] + a3[i]
-        # a[i] = a[i] % 2**32
         a[i] = load_sint()
 
     return a
+
+def load_private_sint(node):
+    v = sint.get_private_input_from(node, node)
+
+    return v
+
+def load_private_sint_array(l, node):
+    a = Array(l, sint)
+    @for_range(l)
+    def f(i):
+        a[i] = load_private_sint(node)
+
+    return a
+
 # todo negative
 def load_fix():
     v = load_sint()
@@ -106,3 +111,11 @@ def output_sfix_array(res):
     def _(j):
         output_shares(0, res[j].v)
 
+
+def output_private_sint(res, node):
+    private_output(res, node, 0)
+
+def output_private_sint_array(res, node):
+    @for_range(len(res))
+    def _(j):
+        output_private_sint(res[j], node)

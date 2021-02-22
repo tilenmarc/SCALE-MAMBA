@@ -26,6 +26,7 @@ class Input_Output_Simple : public Input_Output_Base
   int counter1 = 0;
   int counter2 = 0;
   int counter3 = 0;
+  int counter4 = 0;
   ofstream output_shares_file;
   unsigned long *input_vector;
   vector<Share> shares_vector;

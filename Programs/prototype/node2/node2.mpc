@@ -1,18 +1,9 @@
 from Compiler import input_output
 
-l = 16
+a = sint(0)
+@for_range(1000)
+def g(i):
+    a = sint(2) * sint(3)
 
-def max(a):
-    res = Array(l + 1, sint)
-    res[0] = sint(0)
-    @for_range(l)
-    def f(i):
-        c = res[i] < a[i]
-        res[i+1] = res[i] * (1 - c) + a[i] * c
-    return res[l]
-
-a = input_output.load_sint_array(l)
-s = max(a)
-input_output.output_sint(s)
-
+input_output.output_sint(a)
 restart()
