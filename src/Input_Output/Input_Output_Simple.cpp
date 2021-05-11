@@ -203,6 +203,12 @@ void Input_Output_Simple::trigger(Schedule &schedule, int whoimi)
         send(go_soc , restart_msg , strlen(restart_msg) , 0 );
         break;
     }
+    if (buffer[0] == '0') {
+      printf("received end request: %s\n", buffer);
+      char end_msg[] = "end";
+        send(go_soc , end_msg , strlen(end_msg) , 0 );
+        return;
+    }
     printf("received strange message, no restart: %s\n", buffer);
     sleep(1);
   }

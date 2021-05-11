@@ -1,7 +1,7 @@
 from Compiler import input_output
 
 a = sint(0)
-@for_range(1000)
+@for_range(10)
 def g(i):
     a = sint(2) * sint(3)
 
