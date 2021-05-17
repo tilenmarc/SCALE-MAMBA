@@ -1,18 +1,43 @@
 from Compiler import input_output
 
+# l = 12
+#
+# def max(a):
+#     res = Array(l + 1, sint)
+#     res[0] = sint(0)
+#     @for_range(l)
+#     def f(i):
+#         c = res[i] < a[i]
+#         res[i+1] = res[i] * (1 - c) + a[i] * c
+#     return res[l]
+#
+# a = input_output.load_sint_array(l)
+# s = max(a)
+# input_output.output_sint(s)
+#
+# restart()
+
 l = 12
+dim = [12 / 3, 3]
 
-def max(a):
-    res = Array(l + 1, sint)
-    res[0] = sint(0)
-    @for_range(l)
+def max(M):
+    cols = len(M[0])
+    rows = len(M)
+    m = sint.Array(cols)
+    @for_range(cols)
     def f(i):
-        c = res[i] < a[i]
-        res[i+1] = res[i] * (1 - c) + a[i] * c
-    return res[l]
+        m[i] = sint(0)
+    @for_range(rows)
+    def f(i):
+        @for_range(cols)
+        def g(j):
+            c = m[j] < M[i][j]
+            m[j] = m[i] * (1 - c) + M[i][j] * c
 
-a = input_output.load_sint_array(l)
-s = max(a)
-input_output.output_sint(s)
+    return m
+
+X = input_output.load_sint_matrix(dim[0], dim[1])
+res = max(X)
+input_output.output_sint_array(res)
 
 restart()

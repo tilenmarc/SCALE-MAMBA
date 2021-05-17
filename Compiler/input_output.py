@@ -95,6 +95,18 @@ def load_sfix_matrix(dim_x, dim_y):
 
     return X
 
+def load_sint_matrix(dim_x, dim_y):
+    a = load_sint_array(dim_x*dim_y)
+    X = sint.Matrix(dim_x, dim_y)
+
+    @for_range(dim_x)
+    def f(i):
+        @for_range(dim_y)
+        def g(j):
+            X[i][j] = a[i * dim_y + j]
+
+    return X
+
 def output_sint(res):
     output_shares(0, res)
 
