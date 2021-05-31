@@ -21,7 +21,7 @@ print_ln('before gradient %s, should be %s', out[0].reveal(), Y[1][0].reveal())
 print_ln('num batches %s', len(X))
 
 opt = nn.Optimizer(network, X, Y)
-epochs, batch_size, learning_rate = 10, 2, 0.2
+epochs, batch_size, learning_rate = 10, 2, 0.01
 opt.run(epochs, batch_size, learning_rate, "grad")
 
 out = network.forward(X[0])
