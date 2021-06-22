@@ -1,22 +1,5 @@
 from Compiler import input_output
 
-# l = LEN
-#
-# def max(a):
-#     res = Array(l + 1, sint)
-#     res[0] = sint(0)
-#     @for_range(l)
-#     def f(i):
-#         c = res[i] < a[i]
-#         res[i+1] = res[i] * (1 - c) + a[i] * c
-#     return res[l]
-#
-# a = input_output.load_sint_array(l)
-# s = max(a)
-# input_output.output_sint(s)
-#
-# restart()
-
 l = LEN
 dim = [LEN / COLS, COLS]
 
@@ -31,8 +14,11 @@ def max(M):
     def f(i):
         @for_range(cols)
         def g(j):
+            print_ln('in  %s %s %s %s',i, j, m[j].reveal(), M[i][j].reveal())
             c = m[j] < M[i][j]
-            m[j] = m[i] * (1 - c) + M[i][j] * c
+            print_ln('in %s', c.reveal())
+            m[j] = m[j] * (1 - c) + M[i][j] * c
+            print_ln('new %s %s', m[j].reveal(), M[i][j].reveal())
 
     return m
 

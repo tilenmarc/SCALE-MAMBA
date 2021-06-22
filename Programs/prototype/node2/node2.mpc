@@ -1,43 +1,45 @@
 from Compiler import input_output
 
-# l = 12
-#
+# l = 160
+
 # def max(a):
-#     res = Array(l + 1, sint)
-#     res[0] = sint(0)
+#     res = MemValue(sfix(-1000000))
 #     @for_range(l)
 #     def f(i):
-#         c = res[i] < a[i]
-#         res[i+1] = res[i] * (1 - c) + a[i] * c
-#     return res[l]
-#
-# a = input_output.load_sint_array(l)
+#         c = res.read() < a[i]
+#         res.write(res.read() * (1 - c) + a[i] * c)
+#     return res.read()
+
+# a = input_output.load_sfix_array(l)
 # s = max(a)
-# input_output.output_sint(s)
-#
+# print_ln('max %s', s.reveal())
+
+# input_output.output_sfix(s)
+# input_output.output_sfix(a[1])
+
 # restart()
 
-l = 12
-dim = [12 / 3, 3]
+l = 160
+dim = [160 / 16, 16]
 
 def max(M):
     cols = len(M[0])
     rows = len(M)
-    m = sint.Array(cols)
+    m = sfix.Array(cols)
     @for_range(cols)
     def f(i):
-        m[i] = sint(0)
+        m[i] = sfix(0)
     @for_range(rows)
     def f(i):
         @for_range(cols)
         def g(j):
             c = m[j] < M[i][j]
-            m[j] = m[i] * (1 - c) + M[i][j] * c
+            m[j] = m[j] * (1 - c) + M[i][j] * c
 
     return m
 
-X = input_output.load_sint_matrix(dim[0], dim[1])
+X = input_output.load_sfix_matrix(dim[0], dim[1])
 res = max(X)
-input_output.output_sint_array(res)
+input_output.output_sfix_array(res)
 
 restart()

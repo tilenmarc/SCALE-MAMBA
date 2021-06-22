@@ -1,8 +1,6 @@
 from Compiler.nn_utils import *
 import math
 
-
-
 class NeuralNetwork:
     def __init__(self, layers):
         self.num_layers = len(layers)
@@ -12,7 +10,6 @@ class NeuralNetwork:
         self.back_in_outs = [None for _ in range(self.num_layers + 1)]
 
     def forward(self, x):
-        # vector_print(x)
         self.in_outs[0] = x
 
         for i in range(self.num_layers):
