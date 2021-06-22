@@ -92,3 +92,8 @@ Programs/*/*.bc
 Input/*
 build/*
 Data/*
+
+# Additional #
+##############
+Programs/prototype/node*
+
