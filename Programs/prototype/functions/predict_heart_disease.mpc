@@ -1,0 +1,27 @@
+from Compiler import input_output
+from Compiler import mpc_math
+import math
+
+l = LEN
+dim = [LEN / COLS, COLS]
+
+def predict(vec):
+    v = 0.5815 * vec[0] + 0.0655 * vec[1] + 0.0197 * vec[2] + 0.0023 * vec[3] + 0.0174 * vec[4] + 0.0076 * vec[5] - 9.1264
+    e = mpc_math.pow_fx(math.e, v) / (1 + mpc_math.pow_fx(math.e, v))
+    return e
+
+def predict_all(M):
+    cols = len(M[0])
+    rows = len(M)
+    m = sfix.Array(dim[0])
+    @for_range(rows)
+    def f(i):
+        m[i] = predict(M[i])
+
+    return m
+
+X = input_output.load_sfix_matrix(dim[0], dim[1])
+res = predict_all(X)
+input_output.output_sfix_array(res)
+
+restart()

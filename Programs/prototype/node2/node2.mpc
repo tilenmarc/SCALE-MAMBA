@@ -1,2 +1,45 @@
-open_channel_with_return(5011)
+from Compiler import input_output
+
+# l = 40
+
+# def max(a):
+#     res = MemValue(sfix(-1000000))
+#     @for_range(l)
+#     def f(i):
+#         c = res.read() < a[i]
+#         res.write(res.read() * (1 - c) + a[i] * c)
+#     return res.read()
+
+# a = input_output.load_sfix_array(l)
+# s = max(a)
+# print_ln('max %s', s.reveal())
+
+# input_output.output_sfix(s)
+# input_output.output_sfix(a[1])
+
+# restart()
+
+l = 40
+dim = [40 / 4, 4]
+
+def max(M):
+    cols = len(M[0])
+    rows = len(M)
+    m = sfix.Array(cols)
+    @for_range(cols)
+    def f(i):
+        m[i] = sfix(0)
+    @for_range(rows)
+    def f(i):
+        @for_range(cols)
+        def g(j):
+            c = m[j] < M[i][j]
+            m[j] = m[j] * (1 - c) + M[i][j] * c
+
+    return m
+
+X = input_output.load_sfix_matrix(dim[0], dim[1])
+res = max(X)
+input_output.output_sfix_array(res)
+
 restart()
